@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/14 23:23:48 by dna              ###   ########.fr        #
+#    Updated: 2023/01/15 12:27:33 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,11 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
-INCLUDE		= -I./includes -I./libft/includes
+INCLUDES	= -I./includes -I./libft/includes -I./MLX42/include/MLX42
 
-LDINCLUDES	= -L./libft -lft
+LDINCLUDES	= -L./libft -lft -L./Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw
+
+MLX			= MLX42/libmlx42.a
 
 #-color-codes
 left			= \033[1;93m
@@ -36,6 +38,7 @@ right			= \033[1;91m
 bottom			= \033[1;96m
 white			= \033[1;37m
 green			= \033[0;92m
+g				= \033[32;1m
 de				= \033[0m
 
 all: $(NAME)
@@ -43,21 +46,26 @@ all: $(NAME)
 obj:
 	@mkdir -p $(OBJ_DIR)
 
+mlx:
+	@$(MAKE) -C ./MLX42
+
 obj/%.o: %.c
-	@echo "$(white)> $(green)Compiling  $(white)$<$(de)"
+	@echo "$(g)Compiling: $(white)$<$(de)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): --cub3d_img obj $(OBJ)
+$(NAME): --cub3d_img mlx obj $(OBJ)
 	@$(MAKE) -C ./libft
-	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(LIBFT) $(LINCLUDES) -o $(NAME)
-	@echo "$(white)> $(green)Compiling Done ✓$(de)"
+	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -o $(NAME)
+	@echo "$(g)Compiling: Done ✓$(de)"
 
 clean:
 	@$(MAKE) clean -C libft/
+	@$(MAKE) clean -C MLX42/
 	@rm -rf obj
 
 fclean: clean
 	@$(MAKE) fclean -C libft/
+	@$(MAKE) fclean -C MLX42/
 	@rm -rf $(NAME)
 
 re: fclean all

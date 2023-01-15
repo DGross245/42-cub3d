@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   trash.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:48:36 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/15 12:19:43 by dgross           ###   ########.fr       */
+/*   Created: 2023/01/15 12:01:20 by dgross            #+#    #+#             */
+/*   Updated: 2023/01/15 12:08:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef TRASH_H
+# define TRASH_H
 
-int	main(void)
+typedef struct s_trash
 {
-	t_cube3d	*cube;
+	void			*content;
+	struct s_trash	*next;
+}t_trash;
 
-	(void)cube;
-	return (0);
-}
+void	empty_trash(t_trash *trash);
+
+#endif
