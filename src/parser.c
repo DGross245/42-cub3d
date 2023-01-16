@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/16 16:02:19 by dgross           ###   ########.fr       */
+/*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
+/*   Updated: 2023/01/16 16:01:19 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-typedef struct s_cube3d
+int	parser(int argc, char *argv)
 {
-	void	*nothing;
-}t_cube3d;
-
-# define ERROR -1
-
-//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
-//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-int		print_error(char *reason);
-
-#endif
+	if (argc < 2)
+	{
+		print_error("Map in missing ❗");
+		return (ERROR);
+	}
+}

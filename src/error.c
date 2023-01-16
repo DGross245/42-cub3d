@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/16 16:02:19 by dgross           ###   ########.fr       */
+/*   Created: 2023/01/16 15:53:11 by dgross            #+#    #+#             */
+/*   Updated: 2023/01/16 16:01:53 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
+#include "cub3d.h"
+#include "cub3d.h"
 
-typedef struct s_cube3d
+#include <unistd.h> // write
+
+int	print_error(char *reason)
 {
-	void	*nothing;
-}t_cube3d;
-
-# define ERROR -1
-
-//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
-//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-int		print_error(char *reason);
-
-#endif
+	write(2, "❌ ERROR: ", 9);
+	write(2, reason, ft_strlen(reason));
+	write(2, "\n", 1);
+	return (ERROR);
+}
