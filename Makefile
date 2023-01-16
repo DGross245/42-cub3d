@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/15 12:27:33 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/16 10:15:16 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CFLAGS		= -Wall -Wextra -Werror -g
 
 INCLUDES	= -I./includes -I./libft/includes -I./MLX42/include/MLX42
 
-LDINCLUDES	= -L./libft -lft -L./Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw
+LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw
 
 MLX			= MLX42/libmlx42.a
 

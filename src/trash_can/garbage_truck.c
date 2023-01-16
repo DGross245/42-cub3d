@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   garbage_truck.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/16 16:02:19 by dgross           ###   ########.fr       */
+/*   Created: 2023/01/16 13:37:18 by dgross            #+#    #+#             */
+/*   Updated: 2023/01/16 14:12:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "trash.h"
+#include "libft.h"
 
-typedef struct s_cube3d
+void	*collect_trash(int size, int quantity)
 {
-	void	*nothing;
-}t_cube3d;
+	void	*trash;
 
-# define ERROR -1
+	trash = ft_calloc(quantity, size);
+	
+	return (trash);
+}
 
-//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
-//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
-//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
-
-int		print_error(char *reason);
-
-#endif
+void	throw_garbage_on_top(t_trash **garbage_pile, t_trash *garbige)
+{
+	garbige->next = *garbage_pile;
+	*garbage_pile = garbige;
+}
