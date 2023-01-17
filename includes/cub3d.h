@@ -6,17 +6,17 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/16 16:02:19 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/17 15:33:19 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-typedef struct s_cube3d
+typedef struct s_cub3d
 {
 	void	*nothing;
-}t_cube3d;
+}t_cub3d;
 
 # define ERROR -1
 
