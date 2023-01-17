@@ -6,18 +6,23 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/16 10:15:16 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/17 09:11:02 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3d
 
-VPATH		= src:
+VPATH		= src:\
+			  src/trash_can:
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c
-
+SRC			= main.c\
+			  parser.c\
+			  error.c\
+			  dump.c\
+			  garbage_truck.c
+			  
 OBJ_DIR		= ./obj/
 
 OBJ			= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
@@ -32,7 +37,8 @@ LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw
 
 MLX			= MLX42/libmlx42.a
 
-#-color-codes
+#-~color-codes~-#
+
 left			= \033[1;93m
 right			= \033[1;91m
 bottom			= \033[1;96m
