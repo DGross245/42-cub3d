@@ -3,19 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/20 09:21:33 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/21 13:03:46 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "MLX42.h"
+
+# define HEIGHT				1080
+# define WIDTH				1920
+
+typedef struct s_map
+{
+	int		north;
+	int		south;
+	int		west;
+	int		east;
+	char	*floor;
+	char	*ceiling;
+	char	**map;
+}t_map;
+
 typedef struct s_cub3d
 {
-	char	**data;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	char		**input;
+	t_map		data;
 }t_cub3d;
 
 # define ERROR -1
@@ -24,6 +43,10 @@ typedef struct s_cub3d
 //:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
 //'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
-int		print_error(char *reason);
+void	print_error(char *reason);
+void	init_cub3d(t_cub3d *cube);
+void	init_mlx(t_cub3d *cube);
+void	init_map(t_cub3d *cube);
+void	events(void *param);
 
 #endif

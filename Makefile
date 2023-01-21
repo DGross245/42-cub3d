@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/17 09:11:02 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/21 16:23:55 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,14 @@ VPATH		= src:\
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c\
+SRC			= test.c\
+			  main.c\
 			  parser.c\
 			  error.c\
 			  dump.c\
-			  garbage_truck.c
+			  garbage_truck.c\
+			  init.c\
+			  checker.c
 			  
 OBJ_DIR		= ./obj/
 
@@ -33,7 +36,7 @@ CFLAGS		= -Wall -Wextra -Werror -g
 
 INCLUDES	= -I./includes -I./libft/includes -I./MLX42/include/MLX42
 
-LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw
+LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
 
 MLX			= MLX42/libmlx42.a
 
@@ -129,4 +132,5 @@ re: fclean all
 	@echo "                          $(white)╚█████╔╝╚██████╔╝██████╦╝██████╔╝██████╔╝$(de)"
 	@echo "                           $(white)╚════╝  ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝$(de)"
 	@echo ""
+	@echo "------------------------------------------------------------------------------------------------"
 	@echo ""
