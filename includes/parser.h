@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 08:25:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/21 09:56:28 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/21 15:38:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include "cub3d.h"
 
-int		parser(t_cub3d *cube, int argc, char **argv);
+void	parser(t_cub3d *cube, int argc, char **argv);
 void	reader(t_cub3d *cube, int fd);
+void	check_input(t_cub3d *cube);
+
+
+void	print_map(t_cub3d *cube);
 
 #endif

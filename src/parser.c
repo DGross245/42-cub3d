@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/21 10:27:37 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/21 16:47:43 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,21 @@
 #include <fcntl.h> // open
 #include <stdlib.h> // malloc
 #include <stdio.h>
-int	parser(t_cub3d *cube, int argc, char **argv)
+
+void	parser(t_cub3d *cube, int argc, char **argv)
 {
 	int	fd;
 
 	fd = -1;
 	if (argc < 2)
-	{
 		print_error("map in missing ❗");
-		return (ERROR);
-	}
 	if (argc > 2)
-	{
 		print_error("too many arguments❗");
-		return (ERROR);
-	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 1)
-	{
 		print_error("no such file or directory ❗");
-		return (ERROR);
-	}
 	reader(cube, fd);
-	return (0);
+	check_input(cube);
 }
 
 void	*ft_realloc(void *ptr, size_t new_size)
@@ -80,17 +72,14 @@ void	reader(t_cub3d	*cube, int fd)
 	char	*line;
 	int		size;
 
-	cube->data = NULL;
 	size = 0;
 	line = get_next_line(fd);
-	while (line)
+	while (line != NULL)
 	{
-		cube->data = ft_realloc(cube->data, sizeof(char *) + (size + 1));
-		cube->data[size] = remove_line(line);
-		printf("%s\n", cube->data[size]);
-		size++;
+		cube->input = ft_realloc(cube->input, sizeof(char *) * (size + 1));
+		cube->input[size++] = remove_line(line);
 		line = get_next_line(fd);
 	}
-	if (cube->data[1] != NULL)
-		printf("%s\n", cube->data[1]);
+	cube->input[size] = NULL;
+	print_map(cube);
 }
