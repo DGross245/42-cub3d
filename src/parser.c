@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/17 16:10:44 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/21 10:27:37 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <fcntl.h> // open
 #include <stdlib.h> // malloc
-
+#include <stdio.h>
 int	parser(t_cub3d *cube, int argc, char **argv)
 {
 	int	fd;
@@ -43,10 +43,54 @@ int	parser(t_cub3d *cube, int argc, char **argv)
 	return (0);
 }
 
+void	*ft_realloc(void *ptr, size_t new_size)
+{
+	void	*new_ptr;
+
+	new_ptr = malloc(new_size);
+	if (ptr != NULL)
+	{
+		ft_memcpy(new_ptr, ptr, new_size);
+		free(ptr);
+	}
+	return (new_ptr);
+}
+
+char	*remove_line(char *line)
+{
+	char	*new_line;
+
+	if (line[ft_strlen(line) - 1] != '\n')
+	{
+		new_line = ft_strdup(line);
+		free(line);
+		line = NULL;
+		return (new_line);
+	}
+	new_line = ft_calloc((ft_strlen(line) + 1), sizeof(char));
+	ft_strlcpy(new_line, line, ft_strlen(line));
+	new_line[ft_strlen(line)] = '\0';
+	free(line);
+	line = NULL;
+	return (new_line);
+}
+
 void	reader(t_cub3d	*cube, int fd)
 {
 	char	*line;
+	int		size;
 
+	cube->data = NULL;
+	size = 0;
 	line = get_next_line(fd);
-	(void)cube;
+	while (line)
+	{
+		cube->data = ft_realloc(cube->data, sizeof(char *) + (size + 1));
+		cube->data[size] = remove_line(line);
+		printf("%s\n", cube->data[size]);
+		size++;
+		line = get_next_line(fd);
+	}
+	if (cube->data[1] != NULL)
+		printf("%s\n", cube->data[1]);
 }

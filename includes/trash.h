@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trash.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:01:20 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/17 16:33:19 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/18 07:46:37 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ typedef struct s_trash_bin
 	struct s_trash_bin	*next;
 }t_bin;
 
-typedef struct s_idk
+typedef struct s_gc
 {
 	t_dump	*dump;
 	t_bin	*bin;
-}t_idk;
+}t_gc;
 
 //##########GLOABAL#########//
 
