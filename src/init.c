@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/21 13:29:10 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/23 21:10:53 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 
 #include <stdio.h>
 
@@ -30,8 +31,8 @@ void	init_map(t_cub3d *cube)
 	cube->data.south = -1;
 	cube->data.west = -1;
 	cube->data.east = -1;
-	cube->data.ceiling = NULL;
-	cube->data.floor = NULL;
+	cube->data.ceiling = ft_strdup("");
+	cube->data.floor = ft_strdup("");
 	cube->data.map = NULL;
 }
 

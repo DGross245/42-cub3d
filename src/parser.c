@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/21 16:47:43 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/23 17:07:40 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	parser(t_cub3d *cube, int argc, char **argv)
 		print_error("no such file or directory ❗");
 	reader(cube, fd);
 	check_input(cube);
+	if (cube->data.east == -1 || cube->data.west == -1
+		|| cube->data.north == -1 || cube->data.south == -1)
+	{
+		print_error("invalid texture path ❗");
+	}
 }
 
 void	*ft_realloc(void *ptr, size_t new_size)
