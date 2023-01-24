@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/23 17:07:40 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/24 17:49:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parser(t_cub3d *cube, int argc, char **argv)
 
 	fd = -1;
 	if (argc < 2)
-		print_error("map in missing ❗");
+		print_error("path to map in missing ❗");
 	if (argc > 2)
 		print_error("too many arguments❗");
 	fd = open(argv[1], O_RDONLY);
@@ -79,12 +79,13 @@ void	reader(t_cub3d	*cube, int fd)
 
 	size = 0;
 	line = get_next_line(fd);
+	if (!line)
+		print_error("file is empty ❗");
 	while (line != NULL)
 	{
-		cube->input = ft_realloc(cube->input, sizeof(char *) * (size + 1));
+		cube->input = ft_realloc(cube->input, sizeof(char *) * (size + 2));
 		cube->input[size++] = remove_line(line);
 		line = get_next_line(fd);
 	}
 	cube->input[size] = NULL;
-	print_map(cube);
 }

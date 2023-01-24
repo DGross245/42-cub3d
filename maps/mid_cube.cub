@@ -1,7 +1,7 @@
-NO ./../textures/north_texture
-SO ./../textures/south_texture
-WE ./../textures/west_texture
-EA ./../textures/east_texture
+NO ./../textures/test.png
+SO ./../textures/test.png
+WE ./../textures/test.png
+EA ./../textures/test.png
     
 F 255,255,255
 C 225,30,0

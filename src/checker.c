@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/23 22:32:26 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/24 18:45:28 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,59 @@
 #include <fcntl.h> // open
 #include <stdlib.h> // malloc
 #include <stdio.h>
+#include <unistd.h>
 
-// z.46 verursacht zwischen durch einen segfault. Nochmal nachgucken was da los ist
-void	map_checker(t_map *data, char **map, int *i)
+void	check_map(t_map *data)
 {
-	(void)data;
-	(void)map;
-	(void)i;
+	int	i;
+	int	j;
+	int	max;
+
+	j = 0;
+	i = -1;
+	max = ft_ptrcnt(data->map);
+	while (data->map[++i] && data->map[i][j])
+	{
+		while (data->map[i][j] && ft_isspace(data->map[i][j]))
+			j++;
+		if (data->map[i][j] && i == 0)
+		{
+			while (data->map[i][j] && data->map[i][j] == '1')
+				j++;
+			if (data->map[i][j])
+				print_error("invalid map ❗");
+		}
+		else if (data->map[i][j] && i == max)
+		{
+			while (data->map[i][j] && data->map[i][j] == '1')
+				j++;
+			if (data->map[i][j])
+				print_error("invalid map ❗");
+		}
+		else if (data->map[i][j] != '1'
+			|| data->map[i][ft_strlen(data->map[i])] != '1')
+			print_error("invalid map ❗");
+		j = 0;
+	}
+}
+
+void	get_map(t_map *data, t_cub3d *cube, int *i)
+{
+	int	j;
+	int	len;
+	int	idx;
+
+	idx = *i;
+	len = 0;
+	j = 0;
+	while (cube->input[idx++] != NULL)
+		len++;
+	data->map = ft_calloc(len + 1, sizeof(char *));
+	while (cube->input[(*i)])
+		data->map[j++] = ft_strdup(cube->input[(*i)++]);
+	data->map[j] = NULL;
+	(*i)--;
+	check_map(data);
 }
 
 int	ft_isspace(int c)
@@ -51,11 +97,10 @@ void	check_input(t_cub3d *cube)
 			get_path(&cube->data, check);
 			free_double((void **)check);
 		}
-		else if (ft_isdigit(cube->input[i][j]))
-			map_checker(&cube->data, cube->input, &i);
+		else if (cube->input[i][j] != '\0' && ft_isdigit(cube->input[i][j]))
+			get_map(&cube->data, cube, &i);
 		i++;
 	}
-	print_data(cube->data);
 }
 
 void	get_path(t_map *data, char **str)

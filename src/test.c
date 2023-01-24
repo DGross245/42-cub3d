@@ -10,17 +10,17 @@ void	print_map(t_cub3d *cube)
 		printf("%s\n", cube->input[i]);
 }
 
-void	print_data(t_map *data)
+void	print_data(t_map data)
 {
 	int	i;
 
 	i = -1;
-	printf("%d\n", data->north);
-	printf("%d\n", data->south);
-	printf("%d\n", data->east);
-	printf("%d\n", data->west);
-	printf("%s\n", data->ceiling);
-	printf("%s\n", data->floor);
-	while (data->map != NULL && data->map[i] != NULL)
-		printf("%s\n", data->map[i]);
+	printf("%d\n", data.north);
+	printf("%d\n", data.south);
+	printf("%d\n", data.east);
+	printf("%d\n", data.west);
+	printf("%s\n", data.ceiling);
+	printf("%s\n", data.floor);
+	while (data.map[++i] != NULL)
+		printf("%s\n", data.map[i]);
 }
