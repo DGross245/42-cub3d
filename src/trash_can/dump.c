@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:12:22 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/24 15:20:40 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 22:42:41 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_dump	*new_container(void *pile)
 	if (container == NULL)
 		return (NULL);
 	container->garbage_pile = pile;
-	container->free_func = &free; // art von free noch
+	container->free_func = &free;
 	container->next = NULL;
 	return (container);
 }

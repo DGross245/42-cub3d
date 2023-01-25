@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/24 17:49:37 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:08:41 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void	parser(t_cub3d *cube, int argc, char **argv)
 		print_error("path to map in missing ❗");
 	if (argc > 2)
 		print_error("too many arguments❗");
+	if (ft_strncmp(argv[1] + (ft_strlen(argv[1]) - 4), ".cub", 4) != 0)
+		print_error("file doesnt end with .cub ❗");
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 1)
 		print_error("no such file or directory ❗");
 	reader(cube, fd);
 	check_input(cube);
-	if (cube->data.east == -1 || cube->data.west == -1
-		|| cube->data.north == -1 || cube->data.south == -1)
-	{
+	if (cube->data.east == NULL || cube->data.west == NULL
+		|| cube->data.north == NULL || cube->data.south == NULL)
 		print_error("invalid texture path ❗");
-	}
 }
 
 void	*ft_realloc(void *ptr, size_t new_size)

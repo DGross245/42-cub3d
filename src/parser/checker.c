@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 19:22:11 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 22:34:41 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	is_start_position(t_map *data, int y, int x)
 		data->facing = typ;
 		return (1);
 	}
-	if (typ == '0' || typ == '1')
+	if (typ == '0')
 		return (1);
 	return (0);
 }
@@ -59,9 +59,17 @@ int	is_start_position(t_map *data, int y, int x)
 void	check_surrounding(t_map *data, int y, int x)
 {
 	if (x == 0 || !data->map[y + 1] || !data->map[y - 1]
-		|| data->map[y][x - 1] == ' ' || data->map[y][x + 1] == ' '
-		|| data->map[y - 1][x] == ' ' || data->map[y + 1][x] == ' ')
+		|| !is_valid(data->map[y][x - 1]) || !is_valid(data->map[y][x + 1])
+		|| !is_valid(data->map[y - 1][x]) || !is_valid(data->map[y + 1][x]))
 		print_error("invalid map ❗");
+}
+
+int	is_valid(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0' || c == '1')
+		return (1);
+	else
+		return (0);
 }
 
 void	check_map(t_map *data)
@@ -83,9 +91,9 @@ void	check_map(t_map *data)
 				print_error("invalid map ❗");
 			else if (y == data->height && data->map[y][x] != '1')
 				print_error("invalid map ❗");
-			else if (data->map[y][x] == '0' && data->map[y + 1])
+			else if (is_start_position(data, y, x) && data->map[y + 1])
 				check_surrounding(data, y, x);
-			else if (!is_start_position(data, y, x))
+			else if (data->map[y][x] != '0' && data->map[y][x] != '1')
 				print_error("invalid map ❗");
 		}
 	}	

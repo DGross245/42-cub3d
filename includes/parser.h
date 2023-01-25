@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 08:25:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 19:20:21 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 21:48:46 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	get_map(t_map *data, t_cub3d *cube, int *i);
 void	check_map(t_map *data);
 int		ft_isspace(int c);
 char	*to_hex(unsigned int nbr);
+int		is_valid(char c);
 
 void	print_map(t_cub3d *cube);
 void	print_data(t_map data);
