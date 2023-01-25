@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/24 13:55:42 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 16:09:42 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct s_map
 {
+	char	facing;
 	int		north;
 	int		south;
 	int		west;
