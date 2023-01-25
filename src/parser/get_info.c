@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 23:06:36 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/26 00:32:02 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,18 @@ void	get_map(t_map *data, t_cub3d *cube, int *i)
 {
 	int	j;
 	int	len;
-	int	idx;
+	int	y;
 
-	idx = *i;
+	y = *i;
 	len = 0;
 	j = 0;
-	while (cube->input[idx++] != NULL)
-		len++;
+	while (cube->input[y] != NULL)
+	{
+		if (cube->input[y++][0] != '\0')
+			len++;
+		else
+			print_error("invalid map ❗");
+	}
 	data->map = ft_calloc(len + 1, sizeof(char *));
 	while (cube->input[(*i)])
 		data->map[j++] = ft_strdup(cube->input[(*i)++]);
