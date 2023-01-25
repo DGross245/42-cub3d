@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/25 19:20:41 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/25 19:25:16 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		= cub3d
 
 VPATH		= src:\
 			  src/trash_can:\
-			  src/parser:
+			  src/parser:\
+			  src/execution:
 
 LIBFT		= libft/libft.a
 

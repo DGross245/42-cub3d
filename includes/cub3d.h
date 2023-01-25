@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 16:09:42 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 19:29:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define CUB3D_H
 
 # include "MLX42.h"
-
-# define HEIGHT				1080
-# define WIDTH				1920
 
 typedef struct s_map
 {
@@ -39,8 +36,6 @@ typedef struct s_cub3d
 	char		**input;
 	t_map		data;
 }t_cub3d;
-
-# define ERROR -1
 
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
 //:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
