@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:53:11 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/21 12:17:06 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 18:08:50 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <unistd.h> // write
 #include <stdlib.h> // exit
+
 void	print_error(char *reason)
 {
 	write(2, "❌ ERROR: ", 11);

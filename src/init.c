@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/24 13:56:11 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 16:14:04 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_map(t_cub3d *cube)
 	cube->data.map = NULL;
 	cube->data.width = -1;
 	cube->data.height = -1;
+	cube->data.facing = '\0';
 }
 
 void	init_cub3d(t_cub3d *cube)
