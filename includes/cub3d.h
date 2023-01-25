@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 19:29:24 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:07:45 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 typedef struct s_map
 {
 	char	facing;
-	int		north;
-	int		south;
-	int		west;
-	int		east;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
 	char	*floor;
 	char	*ceiling;
 	char	**map;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 19:08:52 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:06:36 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	get_colour(t_map **data, char **str)
 void	get_path(t_map *data, char **str)
 {
 	if (!ft_strcmp(str[0], "NO"))
-		data->north = open(str[1], O_RDONLY);
+		data->north = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "SO"))
-		data->south = open(str[1], O_RDONLY);
+		data->south = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "WE"))
-		data->west = open(str[1], O_RDONLY);
+		data->west = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "EA"))
-		data->east = open(str[1], O_RDONLY);
+		data->east = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "F") || !ft_strcmp(str[0], "C"))
 		get_colour(&data, str);
 	else

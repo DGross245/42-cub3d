@@ -15,10 +15,10 @@ void	print_data(t_map data)
 	int	i;
 
 	i = -1;
-	printf("%d\n", data.north);
-	printf("%d\n", data.south);
-	printf("%d\n", data.east);
-	printf("%d\n", data.west);
+	printf("%s\n", data.north);
+	printf("%s\n", data.south);
+	printf("%s\n", data.east);
+	printf("%s\n", data.west);
 	printf("%s\n", data.ceiling);
 	printf("%s\n", data.floor);
 	while (data.map[++i] != NULL)

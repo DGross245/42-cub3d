@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_truck.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:37:18 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/17 16:27:23 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/25 22:42:50 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_bin	*new_garbage_bag(void *trash)
 	if (garbage_bag == NULL)
 		return (NULL);
 	garbage_bag->garbage = trash;
-	garbage_bag->free_func = &free; // art von free noch
+	garbage_bag->free_func = &free;
 	garbage_bag->next = NULL;
 	return (garbage_bag);
 }
