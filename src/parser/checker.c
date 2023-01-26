@@ -3,16 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 22:34:41 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/26 12:13:22 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "libft.h"
 #include "trash.h"
+
+void	check_is_set(t_map *data)
+{
+	if (data->ceiling[0] == '\0' || data->floor[0] == '\0' || data->east == NULL
+		|| data->west == NULL || data->north == NULL || data->south == NULL)
+		print_error("missing identifier❗");
+}
 
 void	check_input(t_cub3d *cube)
 {
@@ -34,7 +41,10 @@ void	check_input(t_cub3d *cube)
 			free_double((void **)check);
 		}
 		else if (cube->input[i][j] != '\0' && ft_isdigit(cube->input[i][j]))
+		{
+			check_is_set(&cube->data);
 			get_map(&cube->data, cube, &i);
+		}
 		i++;
 	}
 }

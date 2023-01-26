@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/26 00:32:02 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/26 12:06:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,25 @@ void	get_colour(t_map **data, char **str)
 	int		i;
 
 	i = -1;
+	if (str[1] == NULL)
+		print_error("colours not set ❗");
 	colour = ft_split(str[1], ',');
-	if (colour[0] && colour[1] && colour[2])
+	if (ft_ptrcnt(colour) != 3)
+		print_error("wrong colour ❗");
+	while (colour[++i])
 	{
-		while (colour[++i])
-		{
-			nbr = ft_atoi(colour[i]);
-			if (nbr > 255 || nbr < 0)
-				print_error("wrong colour range❗");
-			if (!ft_strcmp(str[0], "F"))
-				(*data)->floor = ft_strjoin((*data)->floor, to_hex(nbr));
-			else
-				(*data)->ceiling = ft_strjoin((*data)->ceiling, to_hex(nbr));
-		}
+		nbr = ft_atoi(colour[i]);
+		if (nbr > 255 || nbr < 0)
+			print_error("wrong colour range❗");
 		if (!ft_strcmp(str[0], "F"))
-				(*data)->floor = ft_strjoin((*data)->floor, "FF");
+			(*data)->floor = ft_strjoin((*data)->floor, to_hex(nbr));
 		else
-				(*data)->ceiling = ft_strjoin((*data)->ceiling, "FF");
+			(*data)->ceiling = ft_strjoin((*data)->ceiling, to_hex(nbr));
 	}
+	if (!ft_strcmp(str[0], "F"))
+			(*data)->floor = ft_strjoin((*data)->floor, "FF");
 	else
-		print_error("wrong colour❗");
+		(*data)->ceiling = ft_strjoin((*data)->ceiling, "FF");
 }
 
 void	get_path(t_map *data, char **str)
