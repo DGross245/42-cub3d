@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 23:07:08 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/26 12:08:07 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	init_mlx(t_cub3d *cube)
 {
-	cube->mlx = mlx_init(WIDTH, HEIGHT, "FdF", true);
+	cube->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	if (cube->mlx == NULL)
 		print_error("initialization of MLX failed ❗");
 	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
