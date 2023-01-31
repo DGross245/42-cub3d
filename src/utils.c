@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 09:00:16 by dna               #+#    #+#             */
-/*   Updated: 2023/01/25 19:20:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/31 11:45:59 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,12 @@ char	*to_hex(unsigned int nbr)
 	}
 	result[i] = '\0';
 	return (result);
+}
+
+int	is_valid(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0' || c == '1')
+		return (1);
+	else
+		return (0);
 }

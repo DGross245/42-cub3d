@@ -6,8 +6,18 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:08 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 22:43:44 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/31 10:20:53 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include "MLX42.h"
+#include "cub3d.h"
+
+void	events(void *param)
+{
+	t_cub3d	*cube;
+
+	cube = (t_cub3d *)param;
+	(void)cube;
+}
