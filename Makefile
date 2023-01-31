@@ -6,7 +6,7 @@
 #    By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/31 18:06:43 by lgollong         ###   ########.fr        #
+#    Updated: 2023/01/31 18:11:16 by lgollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRC			= test.c\
 			  init.c\
 			  checker.c\
 			  get_info.c\
-			  utils.c
+			  utils.c\
+			  calculator.c\
+			  events.c\
+			  painter.c
 			  
 OBJ_DIR		= ./obj/
 DEP_DIR		= $(OBJ_DIR)deps/

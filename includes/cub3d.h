@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/31 13:35:52 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/31 16:38:07 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_cub3d
 	char		**input;
 	t_map		data;
 	t_cords		player;
+	t_cam		cam;
 }t_cub3d;
 
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
@@ -47,6 +48,7 @@ void	init_cub3d(t_cub3d *cube);
 void	init_mlx(t_cub3d *cube);
 void	init_map(t_cub3d *cube);
 void	init_player(t_cub3d *cube);
+void	init_cam(t_cub3d *cube);
 void	events(void *param);
 
 #endif
