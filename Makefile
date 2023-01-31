@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/25 19:25:16 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/31 18:06:43 by lgollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,16 +31,20 @@ SRC			= test.c\
 			  utils.c
 			  
 OBJ_DIR		= ./obj/
+DEP_DIR		= $(OBJ_DIR)deps/
 
 OBJ			= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
+DEPS		= $(addprefix $(DEP_DIR),$(SRC:.c=.d))
 
 CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -g
+DEPFLAGS     = -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
 
 INCLUDES	= -I./includes -I./libft/includes -I./MLX42/include/MLX42
 
-LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
+LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
+#LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
 
 MLX			= MLX42/libmlx42.a
 
@@ -59,14 +63,21 @@ all: $(NAME)
 obj:
 	@mkdir -p $(OBJ_DIR)
 
+dep:
+	@mkdir -p $(DEP_DIR)
+
 mlx:
 	@$(MAKE) -C ./MLX42
 
 obj/%.o: %.c
 	@echo "$(g)Compiling: $(white)$<$(de)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): --cub3d_img mlx obj $(OBJ)
+dep/%.d: %.c
+	@$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@
+	
+
+$(NAME): --cub3d_img mlx obj dep $(OBJ)
 	@$(MAKE) -C ./libft
 	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -o $(NAME)
 	@echo "$(g)Compiling: Done ✓$(de)"
@@ -139,3 +150,6 @@ re: fclean all
 	@echo ""
 	@echo "╚═════════════════════════════════════════════════════════════════════════════════════════════╝ "
 	@echo ""
+
+$(DEPS):
+	-include $(DEPS)
