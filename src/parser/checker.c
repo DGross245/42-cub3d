@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/26 12:13:22 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/31 11:46:26 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,6 @@ void	check_surrounding(t_map *data, int y, int x)
 		|| !is_valid(data->map[y][x - 1]) || !is_valid(data->map[y][x + 1])
 		|| !is_valid(data->map[y - 1][x]) || !is_valid(data->map[y + 1][x]))
 		print_error("invalid map ❗");
-}
-
-int	is_valid(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0' || c == '1')
-		return (1);
-	else
-		return (0);
 }
 
 void	check_map(t_map *data)
