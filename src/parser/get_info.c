@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/26 12:06:31 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/31 13:39:42 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ void	get_map(t_map *data, t_cub3d *cube, int *i)
 		data->map[j++] = ft_strdup(cube->input[(*i)++]);
 	data->map[j] = NULL;
 	(*i)--;
-	check_map(data);
+	check_map(data, &cube->player);
 }
