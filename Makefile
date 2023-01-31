@@ -6,7 +6,7 @@
 #    By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/31 18:11:16 by lgollong         ###   ########.fr        #
+#    Updated: 2023/01/31 18:26:21 by lgollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ DEPFLAGS     = -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
 
 INCLUDES	= -I./includes -I./libft/includes -I./MLX42/include/MLX42
 
-LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
-#LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
+# LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
+LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
 
 MLX			= MLX42/libmlx42.a
 
