@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:48:36 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/22 21:04:27 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/31 16:39:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
-
-void	events(void *param)
-{
-	t_cub3d	*cube;
-
-	cube = (t_cub3d *)param;
-	(void)cube;
-}
+#include "execution.h"
 
 int	main(int argc, char **argv)
 {
@@ -27,12 +20,11 @@ int	main(int argc, char **argv)
 
 	init_cub3d(&cube);
 	parser(&cube, argc, argv);
-	//calculator();
+	calculator(&cube, &cube.player);
 	//painter();
+	mlx_image_to_window(cube.mlx, cube.img, 0, 0);
+	mlx_loop_hook(cube.mlx, &events, &cube);
+	mlx_loop(cube.mlx);
 	mlx_terminate(cube.mlx);
-	//mlx_loop_hook(cube.mlx, &events, &cube);
-	//mlx_loop(cube.mlx);
-	mlx_terminate(cube.mlx);
-	//gc_shit
 	return (0);
 }
