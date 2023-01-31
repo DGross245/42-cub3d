@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/31 11:46:26 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/31 13:51:19 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,18 @@ void	check_input(t_cub3d *cube)
 	}
 }
 
-int	is_start_position(t_map *data, int y, int x)
+int	is_start_position(t_map *data, t_cords *player, int y, int x)
 {
 	char	typ;
 
 	typ = data->map[y][x];
 	if (typ == 'N' || typ == 'S' || typ == 'W' || typ == 'E')
 	{
-		if (data->facing != '\0')
+		if (player->facing != '\0')
 			print_error("to many start positions ❗");
-		data->facing = typ;
+		player->facing = typ;
+		player->xppos = x;
+		player->yppos = y;
 		return (1);
 	}
 	if (typ == '0')
@@ -74,7 +76,7 @@ void	check_surrounding(t_map *data, int y, int x)
 		print_error("invalid map ❗");
 }
 
-void	check_map(t_map *data)
+void	check_map(t_map *data, t_cords *player)
 {
 	int	x;
 	int	y;
@@ -93,10 +95,11 @@ void	check_map(t_map *data)
 				print_error("invalid map ❗");
 			else if (y == data->height && data->map[y][x] != '1')
 				print_error("invalid map ❗");
-			else if (is_start_position(data, y, x) && data->map[y + 1])
+			else if (is_start_position(data, player, y, x) && data->map[y + 1])
 				check_surrounding(data, y, x);
 			else if (data->map[y][x] != '0' && data->map[y][x] != '1')
 				print_error("invalid map ❗");
 		}
-	}	
+	}
+	is_player_set(player);
 }
