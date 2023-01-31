@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/25 19:25:16 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/31 16:20:46 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRC			= test.c\
 			  init.c\
 			  checker.c\
 			  get_info.c\
-			  utils.c
+			  utils.c\
+			  calculator.c\
+			  events.c\
+			  painter.c
 			  
 OBJ_DIR		= ./obj/
 
