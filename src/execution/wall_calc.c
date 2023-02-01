@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:06:08 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 15:08:00 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/01 17:13:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int	find_wall(t_cub3d *cube)
 
 void	get_wall(int wall_dist)
 {
+	(void)wall_dist;
 	return ;
 }

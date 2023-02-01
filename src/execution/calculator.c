@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 15:44:31 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/01 18:03:47 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	calculator(t_cub3d *cube, t_cords *player)
 		set_dot(cube, player, x);
 		calc_dir(&cube->dot, player);
 		wall_dist = find_wall(cube);
-		get_wall(wall_dist);
-		painter();
+		get_wall();
+		painter(cube, wall_dist);
 	}
+	//mlx_image_to_window(cube->mlx, cube->img, 0, 0);
 }

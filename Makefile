@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/01 10:03:54 by dna              ###   ########.fr        #
+#    Updated: 2023/02/01 17:13:41 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRC				= test.c\
 				  utils.c\
 				  calculator.c\
 				  events.c\
-				  painter.c
+				  painter.c\
+				  wall_calc.c
 			  
 OBJ_DIR			= ./obj/
 OBJ				= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
