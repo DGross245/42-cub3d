@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:48:36 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 08:49:33 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/01 14:11:08 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	init_cub3d(&cube);
 	parser(&cube, argc, argv);
 	calculator(&cube, &cube.player);
-	//painter();
 	mlx_image_to_window(cube.mlx, cube.img, 0, 0);
 	mlx_loop_hook(cube.mlx, &events, &cube);
 	mlx_loop(cube.mlx);
