@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/31 16:38:23 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:46:39 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ void	init_player(t_cub3d *cube)
 	cube->player.ypdir = -1;
 }
 
-void	init_cam(t_cub3d *cube)
+void	init_dot(t_cub3d *cube)
 {
-	
+	cube->dot.camx = -1;
+	cube->dot.raydirx = -1;
+	cube->dot.raydiry = -1;
+	cube->dot.rayx = -1;
+	cube->dot.rayy = -1;
 }
 
 void	init_cub3d(t_cub3d *cube)
@@ -58,5 +62,6 @@ void	init_cub3d(t_cub3d *cube)
 	init_mlx(cube);
 	init_map(cube);
 	init_player(cube);
+	init_dot(cube);
 	cube->input = NULL;
 }

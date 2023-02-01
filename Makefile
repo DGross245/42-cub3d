@@ -3,53 +3,65 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+         #
+#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/01/31 18:26:21 by lgollong         ###   ########.fr        #
+#    Updated: 2023/02/01 10:03:54 by dna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= cub3d
+NAME			= cub3d
 
-VPATH		= src:\
-			  src/trash_can:\
-			  src/parser:\
-			  src/execution:
+LIBFT			= libft/libft.a
+MLX				= MLX42/libmlx42.a
 
-LIBFT		= libft/libft.a
+VPATH			= src:\
+				  src/trash_can:\
+				  src/parser:\
+				  src/execution:\
+				  includes:
 
-SRC			= test.c\
-			  main.c\
-			  parser.c\
-			  error.c\
-			  dump.c\
-			  garbage_truck.c\
-			  init.c\
-			  checker.c\
-			  get_info.c\
-			  utils.c\
-			  calculator.c\
-			  events.c\
-			  painter.c
+HEADERS			= cub3d.h\
+				  execution.h\
+				  macros.h\
+				  parser.h\
+				  trash.h
+
+SRC				= test.c\
+				  main.c\
+				  parser.c\
+				  error.c\
+				  dump.c\
+				  garbage_truck.c\
+				  init.c\
+				  checker.c\
+				  get_info.c\
+				  utils.c\
+				  calculator.c\
+				  events.c\
+				  painter.c
 			  
-OBJ_DIR		= ./obj/
-DEP_DIR		= $(OBJ_DIR)deps/
+OBJ_DIR			= ./obj/
+OBJ				= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
+DEPS			= $(addprefix $(OBJ_DIR),$(SRC:.c=.d))
 
-OBJ			= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
-DEPS		= $(addprefix $(DEP_DIR),$(SRC:.c=.d))
+CC				= cc
+CFLAGS			= -Wall -Wextra -Werror -g
 
-CC			= cc
+INCLUDES		= -I./includes -I./libft/includes -I./MLX42/include/MLX42
+LDINCLUDES		= -L./libft -lft
+# DEPSFLAGS 		= -MT $@ -MMD -MP -MF $(OBJ_DIR)/%.d
 
-CFLAGS		= -Wall -Wextra -Werror -g
-DEPFLAGS     = -MT $@ -MMD -MP -MF $(DEP_DIR)$*.d
+GOINFRE_DIR 	= /Users/$(USER)/goinfre/.brew/opt/glfw/lib
+BREW_DIR 		= /Users/$(USER)/.brew/opt/glfw/lib
 
-INCLUDES	= -I./includes -I./libft/includes -I./MLX42/include/MLX42
+ifneq (,$(shell [ -d $(GOINFRE_DIR) ] && echo 1))
+    LDINCLUDES	+= -L$(GOINFRE_DIR) -lglfw
+else ifneq (,$(shell [ -d $(BREW_DIR) ] && echo 1))
+    LDINCLUDES	+= -L$(BREW_DIR) -lglfw
+endif
 
-# LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
-LDINCLUDES	= -L./libft -lft -L/Users/$(USER)/goinfre/.brew/opt/glfw/lib -lglfw -L./MLX42 -lmlx42
-
-MLX			= MLX42/libmlx42.a
+LDINCLUDES 		+= -L./MLX42 -lmlx42
 
 #-~color-codes~-#
 
@@ -66,21 +78,14 @@ all: $(NAME)
 obj:
 	@mkdir -p $(OBJ_DIR)
 
-dep:
-	@mkdir -p $(DEP_DIR)
-
 mlx:
 	@$(MAKE) -C ./MLX42
 
-obj/%.o: %.c
+obj/%.o: %.c $(HEADERS)
 	@echo "$(g)Compiling: $(white)$<$(de)"
-	@$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-dep/%.d: %.c
-	@$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@
-	
-
-$(NAME): --cub3d_img mlx obj dep $(OBJ)
+$(NAME): --cub3d_img mlx obj $(OBJ)
 	@$(MAKE) -C ./libft
 	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -o $(NAME)
 	@echo "$(g)Compiling: Done ✓$(de)"
@@ -88,12 +93,12 @@ $(NAME): --cub3d_img mlx obj dep $(OBJ)
 clean:
 	@$(MAKE) clean -C libft/
 	@$(MAKE) clean -C MLX42/
-	@rm -rf obj
+	@$(RM) -rf obj
 
 fclean: clean
 	@$(MAKE) fclean -C libft/
 	@$(MAKE) fclean -C MLX42/
-	@rm -rf $(NAME)
+	@$(RM) -rf $(NAME)
 
 re: fclean all
 
@@ -154,5 +159,4 @@ re: fclean all
 	@echo "╚═════════════════════════════════════════════════════════════════════════════════════════════╝ "
 	@echo ""
 
-$(DEPS):
-	-include $(DEPS)
+# -include $(DEPS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/31 16:38:07 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/01 10:44:41 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB3D_H
 
 # include "MLX42.h"
-# include "execution.h"
 
 typedef struct s_map
 {
@@ -29,6 +28,24 @@ typedef struct s_map
 	int		width;
 }t_map;
 
+typedef struct s_cords
+{
+	char	facing;
+	float	xppos;
+	float	yppos;
+	float	xpdir;
+	float	ypdir;
+}t_cords;
+
+typedef struct s_points
+{
+	float	rayx;
+	float	rayy;
+	float	raydirx;
+	float	raydiry;
+	float	camx;
+}t_points;
+
 typedef struct s_cub3d
 {
 	mlx_t		*mlx;
@@ -36,7 +53,7 @@ typedef struct s_cub3d
 	char		**input;
 	t_map		data;
 	t_cords		player;
-	t_cam		cam;
+	t_points	dot;
 }t_cub3d;
 
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
