@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:27:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 08:28:40 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/01 13:29:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@
 # include "cub3d.h"
 
 void	calculator(t_cub3d *cube, t_cords *player);
-
+int		ft_abs(int x);
 #endif

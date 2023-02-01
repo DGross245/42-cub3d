@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 11:46:39 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/01 13:57:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	init_dot(t_cub3d *cube)
 	cube->dot.raydiry = -1;
 	cube->dot.rayx = -1;
 	cube->dot.rayy = -1;
+	cube->dot.deltadisx = -1;
+	cube->dot.deltadisy = -1;
+	cube->dot.map_x = -1;
+	cube->dot.map_y = -1;
+	cube->dot.sidedis_x = -1;
+	cube->dot.sidedis_y = -1;
 }
 
 void	init_cub3d(t_cub3d *cube)

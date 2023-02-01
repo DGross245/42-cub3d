@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 09:00:16 by dna               #+#    #+#             */
-/*   Updated: 2023/01/31 13:50:28 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/01 13:28:23 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,11 @@ void	is_player_set(t_cords *player)
 {
 	if (player->facing == '\0')
 		print_error("missing player's spawn & orientation ❗");
+}
+
+int	ft_abs(int x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
 }

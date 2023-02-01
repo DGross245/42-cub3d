@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 10:44:41 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/01 14:36:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ typedef struct s_points
 	float	raydirx;
 	float	raydiry;
 	float	camx;
+	float	deltadisx;
+	float	deltadisy;
+	int		map_x;
+	int		map_y;
+	float	sidedis_x;
+	float	sidedis_y;
+	int		wall_hit;
+	float	stepx;
+	float	stepy;
+	float	wall_side;
 }t_points;
 
 typedef struct s_cub3d
