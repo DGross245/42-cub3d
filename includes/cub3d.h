@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 20:22:38 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 23:34:27 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 typedef struct s_map
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	char	*floor;
-	char	*ceiling;
-	char	**map;
-	int		height;
-	int		width;
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	unsigned int	floor;
+	unsigned int	ceiling;
+	char			**map;
+	int				height;
+	int				width;
 }t_map;
 
 typedef struct s_cords

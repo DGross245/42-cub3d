@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 20:50:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 23:38:51 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	init_map(t_cub3d *cube)
 	cube->data.south = NULL;
 	cube->data.west = NULL;
 	cube->data.east = NULL;
-	cube->data.ceiling = ft_strdup("");
-	cube->data.floor = ft_strdup("");
+	cube->data.ceiling = 0;
+	cube->data.floor = 0;
 	cube->data.map = NULL;
 	cube->data.width = -1;
 	cube->data.height = -1;

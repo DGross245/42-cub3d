@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 20:44:01 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 23:48:24 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,46 @@
 #include <stddef.h> // NULL
 #include <stdio.h>
 
+static unsigned long	rgba_to_uint(int r, int g, int b, int a)
+{
+	return (((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) \
+			+ (a & 0xff));
+}
+
+static void	check_colour_range(char **str)
+{
+	int	i;
+	int	nbr;
+
+	i = 0;
+	while (str[++i])
+	{
+		nbr = ft_atoi(str[i]);
+		if (nbr < 0 || nbr > 255)
+			print_error("wrong colour range");
+	}
+}
+
 void	get_colour(t_map *data, char **str)
 {
 	char	**colour;
-	int		nbr;
-	int		i;
+	int		r;
+	int		g;
+	int		b;
 
-	i = -1;
 	if (str[1] == NULL)
 		print_error("colours not set ❗");
 	colour = ft_split(str[1], ',');
 	if (ft_ptrcnt(colour) != 3)
 		print_error("wrong colour ❗");
-	while (colour[++i])
-	{
-		nbr = ft_atoi(colour[i]);
-		if (nbr > 255 || nbr < 0)
-			print_error("wrong colour range❗");
-		if (!ft_strcmp(str[0], "F"))
-			data->floor = ft_strjoin(data->floor, to_hex(nbr));
-		else
-			data->ceiling = ft_strjoin(data->ceiling, to_hex(nbr));
-	}
+	check_colour_range(colour);
+	r = ft_atoi(colour[0]);
+	g = ft_atoi(colour[1]);
+	b = ft_atoi(colour[2]);
 	if (!ft_strcmp(str[0], "F"))
-		data->floor = ft_strjoin(data->floor, "FF");
+		data->floor = rgba_to_uint(r, g, b, 255);
 	else
-		data->ceiling = ft_strjoin(data->ceiling, "FF");
+		data->ceiling = rgba_to_uint(r, g, b, 255);
 }
 
 void	get_path(t_map *data, char **str)
