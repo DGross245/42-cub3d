@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/05 11:37:54 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/05 17:48:22 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ void	events(void *param)
 		go_left(&cube->player, cube);
 	else if (mlx_is_key_down(cube->mlx, MLX_KEY_D))
 		go_right(&cube->player, cube);
-	if (mlx_is_key_down(cube->mlx, MLX_KEY_RIGHT)
-		|| ((cube->tmp_x > WIDTH / 2) && mlx_is_key_down(cube->mlx, MLX_KEY_E)))
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_E))
 		turn_right(&cube->player);
-	if (mlx_is_key_down(cube->mlx, MLX_KEY_LEFT)
-		|| ((cube->tmp_x < WIDTH / 2) && mlx_is_key_down(cube->mlx, MLX_KEY_Q)))
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_Q))
 		turn_left(&cube->player);
 	redraw(cube);
 }

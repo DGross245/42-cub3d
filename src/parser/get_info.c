@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 17:22:21 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 18:22:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	get_colour(t_map **data, char **str)
 			(*data)->ceiling = ft_strjoin((*data)->ceiling, to_hex(nbr));
 	}
 	if (!ft_strcmp(str[0], "F"))
-			(*data)->floor = ft_strjoin((*data)->floor, "FF");
+		(*data)->floor = ft_strjoin((*data)->floor, "FF");
 	else
 		(*data)->ceiling = ft_strjoin((*data)->ceiling, "FF");
 }
@@ -78,12 +78,7 @@ void	get_map(t_map *data, t_cub3d *cube, int *i)
 	}
 	data->map = ft_calloc(len + 1, sizeof(char *));
 	while (cube->input[(*i)])
-	{
 		data->map[j++] = ft_strdup(cube->input[(*i)++]);
-		if (ft_strlen(data->map[--j]) > (size_t)data->width)
-			data->width = ft_strlen(data->map[j]);
-		j++;
-	}
 	data->map[j] = NULL;
 	(*i)--;
 	check_map(data, &cube->player);

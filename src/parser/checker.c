@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 10:01:08 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/05 12:47:17 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	check_input(t_cub3d *cube)
 		}
 		i++;
 	}
+	init_textures(cube);
 }
 
 int	is_start_position(t_map *data, t_cords *plaxer, int x, int y)

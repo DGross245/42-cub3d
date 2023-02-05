@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 10:34:03 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/05 13:23:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,21 @@ void	init_player(t_cub3d *cube)
 	cube->player.plane_y = 0;
 }
 
-void	init_ray(t_cub3d *cube)
-{
-	cube->ray.camx = -1;
-	cube->ray.raydirx = -1;
-	cube->ray.raydiry = -1;
-	cube->ray.rayx = -1;
-	cube->ray.rayy = -1;
-	cube->ray.deltadisx = -1;
-	cube->ray.deltadisy = -1;
-	cube->ray.map_x = -1;
-	cube->ray.map_y = -1;
-	cube->ray.sidedis_x = -1;
-	cube->ray.sidedis_y = -1;
-}
-
 void	init_cub3d(t_cub3d *cube)
 {
 	init_mlx(cube);
 	init_map(cube);
 	init_player(cube);
-	init_ray(cube);
 	cube->input = NULL;
+}
+
+void	init_textures(t_cub3d *cube)
+{
+	cube->tex.north = mlx_load_png(cube->data.north);
+	cube->tex.west = mlx_load_png(cube->data.west);
+	cube->tex.south = mlx_load_png(cube->data.south);
+	cube->tex.east = mlx_load_png(cube->data.east);
+	if (cube->tex.north == NULL || cube->tex.south == NULL
+		||cube->tex.west == NULL || cube->tex.east == NULL)
+		print_error("MLX PNG ERROR\n");
 }
