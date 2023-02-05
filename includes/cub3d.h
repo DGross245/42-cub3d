@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 13:24:21 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 20:22:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_ray
 	double	wall_dist;
 	int		start;
 	int		end;
+	double	lheight;
 }t_ray;
 
 typedef struct s_cub3d

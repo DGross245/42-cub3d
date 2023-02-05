@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 12:47:17 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 20:49:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "execution.h"
 #include "libft.h"
 #include "trash.h"
+#include <stdio.h>
 
 void	check_is_set(t_map *data)
 {

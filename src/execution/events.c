@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/05 17:48:22 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 21:00:11 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	events(void *param)
 	if ((mlx_is_key_down(cube->mlx, MLX_KEY_W)
 			|| mlx_is_key_down(cube->mlx, MLX_KEY_UP)))
 		go_up(&cube->player, cube);
-	else if ((mlx_is_key_down(cube->mlx, MLX_KEY_S)
+	if ((mlx_is_key_down(cube->mlx, MLX_KEY_S)
 			|| mlx_is_key_down(cube->mlx, MLX_KEY_DOWN)))
 		go_down(&cube->player, cube);
-	else if (mlx_is_key_down(cube->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_A))
 		go_left(&cube->player, cube);
-	else if (mlx_is_key_down(cube->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_D))
 		go_right(&cube->player, cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_E))
 		turn_right(&cube->player);
