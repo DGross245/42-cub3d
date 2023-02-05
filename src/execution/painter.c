@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   painter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:11 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 21:01:23 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 23:35:11 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,14 @@ int	find_wall(t_cub3d *cube, mlx_texture_t	*texture)
 void	paint_bg(t_cub3d	*cube, int x)
 {
 	int				i;
-	unsigned int	ceiling;
-	unsigned int	floor;
 
 	i = -1;
-	ceiling = hex_to_uint(cube->data.ceiling);
-	floor = hex_to_uint(cube->data.floor);
 	while (++i < HEIGHT)
 	{
 		if (i <= cube->ray.start)
-			mlx_put_pixel(cube->img, x, i, ceiling);
+			mlx_put_pixel(cube->img, x, i, cube->data.ceiling);
 		if (i >= cube->ray.end)
-			mlx_put_pixel(cube->img, x, i, floor);
+			mlx_put_pixel(cube->img, x, i, cube->data.floor);
 	}
 }
 
