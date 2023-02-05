@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 18:22:31 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 20:44:01 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 #include <fcntl.h> // open
 #include <stddef.h> // NULL
+#include <stdio.h>
 
-void	get_colour(t_map **data, char **str)
+void	get_colour(t_map *data, char **str)
 {
 	char	**colour;
 	int		nbr;
@@ -34,14 +35,14 @@ void	get_colour(t_map **data, char **str)
 		if (nbr > 255 || nbr < 0)
 			print_error("wrong colour range❗");
 		if (!ft_strcmp(str[0], "F"))
-			(*data)->floor = ft_strjoin((*data)->floor, to_hex(nbr));
+			data->floor = ft_strjoin(data->floor, to_hex(nbr));
 		else
-			(*data)->ceiling = ft_strjoin((*data)->ceiling, to_hex(nbr));
+			data->ceiling = ft_strjoin(data->ceiling, to_hex(nbr));
 	}
 	if (!ft_strcmp(str[0], "F"))
-		(*data)->floor = ft_strjoin((*data)->floor, "FF");
+		data->floor = ft_strjoin(data->floor, "FF");
 	else
-		(*data)->ceiling = ft_strjoin((*data)->ceiling, "FF");
+		data->ceiling = ft_strjoin(data->ceiling, "FF");
 }
 
 void	get_path(t_map *data, char **str)
@@ -55,7 +56,7 @@ void	get_path(t_map *data, char **str)
 	else if (!ft_strcmp(str[0], "EA"))
 		data->east = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "F") || !ft_strcmp(str[0], "C"))
-		get_colour(&data, str);
+		get_colour(data, str);
 	else
 		print_error("missing or wrong identifier ❗");
 }

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 08:25:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 13:28:53 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 20:39:48 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	reader(t_cub3d *cube, int fd);
 void	check_input(t_cub3d *cube);
 int		ft_isspace(int c);
 void	get_path(t_map *data, char **str);
-void	get_colour(t_map **data, char **str);
+void	get_colour(t_map *data, char **str);
 void	get_map(t_map *data, t_cub3d *cube, int *i);
 char	*to_hex(unsigned int nbr);
 void	get_map(t_map *data, t_cub3d *cube, int *i);

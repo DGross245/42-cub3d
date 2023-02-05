@@ -6,17 +6,15 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:06:08 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 16:46:50 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 20:55:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 #include <math.h>
 
-double	calc_wall(t_cub3d *cube)
+void	dda(t_cub3d *cube)
 {
-	double	wall_dist;
-
 	while (cube->ray.wall_hit == 0)
 	{
 		if (cube->ray.sidedis_x < cube->ray.sidedis_y)
@@ -34,9 +32,4 @@ double	calc_wall(t_cub3d *cube)
 		if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '1')
 			cube->ray.wall_hit = 1;
 	}
-	if (cube->ray.wall_side == 0)
-		wall_dist = fabs((cube->ray.map_x - cube->player.xppos + (1 - cube->ray.stepx) / 2) / cube->ray.raydirx);
-	else
-		wall_dist = fabs((cube->ray.map_y - cube->player.yppos + (1 - cube->ray.stepy) / 2) / cube->ray.raydiry);
-	return (wall_dist);
 }

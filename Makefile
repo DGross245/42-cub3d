@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/05 10:02:56 by dna              ###   ########.fr        #
+#    Updated: 2023/02/05 20:58:20 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,7 @@ HEADERS			= cub3d.h\
 				  parser.h\
 				  trash.h
 
-SRC				= test.c\
-				  main.c\
+SRC				= main.c\
 				  parser.c\
 				  error.c\
 				  dump.c\
@@ -40,7 +39,7 @@ SRC				= test.c\
 				  calculator.c\
 				  events.c\
 				  painter.c\
-				  wall_calc.c\
+				  dda.c\
 				  go.c\
 				  turn.c
 			  
