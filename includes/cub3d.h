@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 10:45:09 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/05 13:24:21 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_cords
 	double	plane_y;
 }t_cords;
 
+typedef struct s_tex
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*west;
+	mlx_texture_t	*east;
+}t_tex;
+
 typedef struct s_ray
 {
 	double	rayx;
@@ -65,7 +73,7 @@ typedef struct s_cub3d
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_texture_t	**tex;
+	t_tex			tex;
 	char			**input;
 	t_map			data;
 	t_cords			player;
@@ -83,7 +91,6 @@ void	init_cub3d(t_cub3d *cube);
 void	init_mlx(t_cub3d *cube);
 void	init_map(t_cub3d *cube);
 void	init_player(t_cub3d *cube);
-void	init_cam(t_cub3d *cube);
 void	events(void *param);
 
 #endif

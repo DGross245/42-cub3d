@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 11:44:56 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/05 13:22:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,32 +96,23 @@ void	calculator(t_cub3d *cube, t_cords *player)
 	mlx_image_to_window(cube->mlx, cube->img, 0, 0);
 }
 
-void	init_textures(t_cub3d *cube)
-{
-	cube->tex = malloc(sizeof(mlx_texture_t *) * 4);
-	cube->tex[0] = mlx_load_png(cube->data.north);
-	cube->tex[1] = mlx_load_png(cube->data.south);
-	cube->tex[2] = mlx_load_png(cube->data.west);
-	cube->tex[3] = mlx_load_png(cube->data.east);
-}
-
-int	get_wall_tex(t_cub3d *cube)
+mlx_texture_t	*get_wall_tex(t_cub3d *cube)
 {
 	mlx_texture_t	*wall_tex;
 
 	if (cube->ray.wall_side == 1)
 	{
 		if (cube->ray.stepy < 0)
-			wall_tex = /*north*/;
-		if (cube->ray.stepy > 0)
-			wall_tex = /*south*/;
+			wall_tex = cube->tex.north;
+		else if (cube->ray.stepy > 0)
+			wall_tex = cube->tex.south;
 	}
 	if (cube->ray.wall_side == 0)
 	{
 		if (cube->ray.stepx > 0)
-			wall_tex = /*west*/;
-		if (cube->ray.stepx < 0)
-			wall_tex = /*east*/;
+			wall_tex = cube->tex.west;
+		else if (cube->ray.stepx < 0)
+			wall_tex = cube->tex.east;
 	}
 	return (wall_tex);
 }
