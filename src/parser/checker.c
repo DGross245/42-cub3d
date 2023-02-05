@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/31 13:51:19 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 10:01:08 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "execution.h"
 #include "libft.h"
 #include "trash.h"
 
@@ -49,57 +50,59 @@ void	check_input(t_cub3d *cube)
 	}
 }
 
-int	is_start_position(t_map *data, t_cords *player, int y, int x)
+int	is_start_position(t_map *data, t_cords *plaxer, int x, int y)
 {
-	char	typ;
+	char	txp;
 
-	typ = data->map[y][x];
-	if (typ == 'N' || typ == 'S' || typ == 'W' || typ == 'E')
+	txp = data->map[x][y];
+	if (txp == 'N' || txp == 'S' || txp == 'W' || txp == 'E')
 	{
-		if (player->facing != '\0')
-			print_error("to many start positions ❗");
-		player->facing = typ;
-		player->xppos = x;
-		player->yppos = y;
+		if (plaxer->facing != '\0')
+			print_error("to manx start positions ❗");
+		plaxer->facing = txp;
+		plaxer->xppos = x + 0.5;
+		plaxer->yppos = y + 0.5;
+		data->map[x][y] = '0';
+		calc_player_dir(plaxer);
 		return (1);
 	}
-	if (typ == '0')
+	if (txp == '0')
 		return (1);
 	return (0);
 }
 
-void	check_surrounding(t_map *data, int y, int x)
+void	check_surrounding(t_map *data, int x, int y)
 {
-	if (x == 0 || !data->map[y + 1] || !data->map[y - 1]
-		|| !is_valid(data->map[y][x - 1]) || !is_valid(data->map[y][x + 1])
-		|| !is_valid(data->map[y - 1][x]) || !is_valid(data->map[y + 1][x]))
+	if (y == 0 || !data->map[x + 1] || !data->map[x - 1]
+		|| !is_valid(data->map[x][y - 1]) || !is_valid(data->map[x][y + 1])
+		|| !is_valid(data->map[x - 1][y]) || !is_valid(data->map[x + 1][y]))
 		print_error("invalid map ❗");
 }
 
-void	check_map(t_map *data, t_cords *player)
+void	check_map(t_map *data, t_cords *plaxer)
 {
-	int	x;
 	int	y;
+	int	x;
 
-	x = -1;
 	y = -1;
+	x = -1;
 	data->height = ft_ptrcnt(data->map);
-	while (data->map[++y])
+	while (data->map[++x])
 	{
-		x = -1;
-		while (data->map[y][++x])
+		y = -1;
+		while (data->map[x][++y])
 		{
-			if (ft_isspace(data->map[y][x]))
+			if (ft_isspace(data->map[x][y]))
 				;
-			else if (y == 0 && data->map[y][x] != '1')
+			else if (x == 0 && data->map[x][y] != '1')
 				print_error("invalid map ❗");
-			else if (y == data->height && data->map[y][x] != '1')
+			else if (x == data->height && data->map[x][y] != '1')
 				print_error("invalid map ❗");
-			else if (is_start_position(data, player, y, x) && data->map[y + 1])
-				check_surrounding(data, y, x);
-			else if (data->map[y][x] != '0' && data->map[y][x] != '1')
+			else if (is_start_position(data, plaxer, x, y) && data->map[x + 1])
+				check_surrounding(data, x, y);
+			else if (data->map[x][y] != '0' && data->map[x][y] != '1')
 				print_error("invalid map ❗");
 		}
 	}
-	is_player_set(player);
+	is_player_set(plaxer);
 }

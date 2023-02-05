@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/01 17:13:41 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/05 10:02:56 by dna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ SRC				= test.c\
 				  calculator.c\
 				  events.c\
 				  painter.c\
-				  wall_calc.c
+				  wall_calc.c\
+				  go.c\
+				  turn.c
 			  
 OBJ_DIR			= ./obj/
 OBJ				= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
@@ -88,7 +90,7 @@ obj/%.o: %.c $(HEADERS)
 
 $(NAME): --cub3d_img mlx obj $(OBJ)
 	@$(MAKE) -C ./libft
-	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME)
 	@echo "$(g)Compiling: Done ✓$(de)"
 
 clean:

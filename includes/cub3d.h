@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 14:36:49 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 10:45:09 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,47 @@ typedef struct s_map
 typedef struct s_cords
 {
 	char	facing;
-	float	xppos;
-	float	yppos;
-	float	xpdir;
-	float	ypdir;
+	double	xppos;
+	double	yppos;
+	double	xpdir;
+	double	ypdir;
+	double	plane_x;
+	double	plane_y;
 }t_cords;
 
-typedef struct s_points
+typedef struct s_ray
 {
-	float	rayx;
-	float	rayy;
-	float	raydirx;
-	float	raydiry;
-	float	camx;
-	float	deltadisx;
-	float	deltadisy;
+	double	rayx;
+	double	rayy;
+	double	raydirx;
+	double	raydiry;
+	double	camx;
+	double	deltadisx;
+	double	deltadisy;
 	int		map_x;
 	int		map_y;
-	float	sidedis_x;
-	float	sidedis_y;
+	double	sidedis_x;
+	double	sidedis_y;
 	int		wall_hit;
-	float	stepx;
-	float	stepy;
-	float	wall_side;
-}t_points;
+	double	stepx;
+	double	stepy;
+	int		wall_side;
+	double	wall_dist;
+	int		start;
+	int		end;
+}t_ray;
 
 typedef struct s_cub3d
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	char		**input;
-	t_map		data;
-	t_cords		player;
-	t_points	dot;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_texture_t	**tex;
+	char			**input;
+	t_map			data;
+	t_cords			player;
+	t_ray			ray;
+	int				tmp_x;
+	int				tmp_y;
 }t_cub3d;
 
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.

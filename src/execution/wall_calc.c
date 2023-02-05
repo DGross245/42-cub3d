@@ -3,45 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   wall_calc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:06:08 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 17:13:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 09:59:29 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include <math.h>
 
-int	find_wall(t_cub3d *cube)
+double	calc_wall(t_cub3d *cube)
 {
-	int	wall;
+	double	wall_dist;
 
-	while (cube->dot.wall_hit == 0)
+	while (cube->ray.wall_hit == 0)
 	{
-		if (cube->dot.sidedis_x < cube->dot.sidedis_y)
+		if (cube->ray.sidedis_x < cube->ray.sidedis_y)
 		{
-			cube->dot.wall_side = 0;
-			cube->dot.sidedis_x += cube->dot.deltadisx;
-			cube->dot.map_x += cube->dot.stepx;
+			cube->ray.wall_side = 0;
+			cube->ray.sidedis_x += cube->ray.deltadisx;
+			cube->ray.map_x += cube->ray.stepx;
 		}
 		else
 		{
-			cube->dot.wall_side = 1;
-			cube->dot.sidedis_y += cube->dot.deltadisy;
-			cube->dot.map_y += cube->dot.stepy;
+			cube->ray.wall_side = 1;
+			cube->ray.sidedis_y += cube->ray.deltadisy;
+			cube->ray.map_y += cube->ray.stepy;
 		}
-		if (cube->data.map[cube->dot.map_x][cube->dot.map_y] > 0)
-			cube->dot.wall_hit = 1;
+		if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '1')
+			cube->ray.wall_hit = 1;
 	}
-	if (cube->dot.wall_hit == 0)
-		wall = cube->dot.sidedis_x - cube->dot.deltadisx;
+	if (cube->ray.wall_side == 0)
+		wall_dist = fabs((cube->ray.map_x - cube->player.xppos + (1 - cube->ray.stepx) / 2) / cube->ray.raydirx);
 	else
-		wall = cube->dot.sidedis_y - cube->dot.deltadisy;
-	return (wall);
-}
-
-void	get_wall(int wall_dist)
-{
-	(void)wall_dist;
-	return ;
+		wall_dist = fabs((cube->ray.map_y - cube->player.yppos + (1 - cube->ray.stepy) / 2) / cube->ray.raydiry);
+	return (wall_dist);
 }
