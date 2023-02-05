@@ -1,10 +1,10 @@
-NO ./../textures/north_texture
-SO ./../textures/south_texture
-WE ./../textures/west_texture
-EA ./../textures/east_texture
+NO textures/north.png
+SO textures/north.png
+WE textures/north.png
+EA textures/north.png
     
-F 220,100,0
-C 225,30,0
+F 120,100,88
+C 125,30,90
 
 11111
 10001

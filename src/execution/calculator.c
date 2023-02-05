@@ -3,83 +3,125 @@
 /*                                                        :::      ::::::::   */
 /*   calculator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 18:03:47 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 11:44:56 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 #include "cub3d.h"
+#include "libft.h"
+#include "macros.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 
 void	calc_player_dir(t_cords *player)
 {
 	if (player->facing == 'N')
-		player->xpdir = 0;
+	{
+		player->xpdir = -1;
+		player->plane_y = 1;
+	}
 	else if (player->facing == 'E')
 	{
-		player->xpdir = 1;
-		player->ypdir = 0;
+		player->ypdir = 1;
+		player->plane_x = 1;
 	}
 	else if (player->facing == 'S')
 	{
-		player->xpdir = 0;
-		player->ypdir = 1;
+		player->xpdir = 1;
+		player->plane_y = -1;
 	}
 	else if (player->facing == 'W')
-		player->ypdir = 0;
-}
-
-void	set_dot(t_cub3d *cube, t_cords *player, int x)
-{
-	cube->dot.camx = 2 * x / cube->data.width - 1;
-	cube->dot.raydirx = player->xpdir * 0 * cube->dot.camx;
-	cube->dot.raydiry = player->ypdir * 0.66 * cube->dot.camx;
-	cube->dot.deltadisx = ft_abs(1 / cube->dot.raydirx);
-	cube->dot.deltadisy = ft_abs(1 / cube->dot.raydiry);
-	cube->dot.map_x = (int)cube->player.xppos;
-	cube->dot.map_y = (int)cube->player.yppos;
-	cube->dot.wall_hit = 0;
-}
-
-void	calc_dir(t_points	*dot, t_cords *player)
-{
-	if (dot->raydirx > 0)
 	{
-		dot->stepx = 1;
-		dot->sidedis_x = (dot->map_x + 1 - player->xppos) * dot->sidedis_x;
+		player->ypdir = -1;
+		player->plane_x = -1;
+	}
+}
+
+void	set_ray(t_ray	*ray, t_cords *player, int x)
+{
+	ray->camx = 2 * x / (double)WIDTH - 1;
+	ray->raydirx = player->xpdir + player->plane_x * ray->camx;
+	ray->raydiry = player->ypdir + player->plane_y * ray->camx;
+	ray->map_x = (int)player->xppos;
+	ray->map_y = (int)player->yppos;
+	ray->deltadisx = sqrt(1 + pow(ray->raydiry, 2) / pow(ray->raydirx, 2));
+	ray->deltadisy = sqrt(1 + pow(ray->raydirx, 2) / pow(ray->raydiry, 2));
+	ray->wall_hit = 0;
+}
+
+void	calc_dir(t_ray	*ray, t_cords *player)
+{
+	if (ray->raydirx > 0)
+	{
+		ray->stepx = 1;
+		ray->sidedis_x = (ray->map_x + 1.0 - player->xppos) * ray->deltadisx;
 	}
 	else
 	{
-		dot->stepx = -1;
-		dot->sidedis_x = (player->xppos + dot->map_x) * dot->sidedis_x;
+		ray->stepx = -1;
+		ray->sidedis_x = (player->xppos - ray->map_x) * ray->deltadisx;
 	}
-	if (dot->raydiry > 0)
+	if (ray->raydiry > 0)
 	{
-		dot->stepy = 1;
-		dot->sidedis_y = (dot->map_y + 1 - player->yppos) * dot->sidedis_y;
+		ray->stepy = 1;
+		ray->sidedis_y = (ray->map_y + 1.0 - player->yppos) * ray->deltadisy;
 	}
 	else
 	{
-		dot->stepy = -1;
-		dot->sidedis_y = (player->yppos + dot->map_y) * dot->sidedis_y;
+		ray->stepy = -1;
+		ray->sidedis_y = (player->yppos - ray->map_y) * ray->deltadisy;
 	}
 }
 
 void	calculator(t_cub3d *cube, t_cords *player)
 {
-	int	x;
-	int	wall_dist;
+	int					x;
+	mlx_texture_t		*tex;
 
 	x = -1;
-	while (++x < cube->data.width)
+	while (++x < WIDTH)
 	{
-		set_dot(cube, player, x);
-		calc_dir(&cube->dot, player);
-		wall_dist = find_wall(cube);
-		get_wall();
-		painter(cube, wall_dist);
+		set_ray(&cube->ray, player, x);
+		calc_dir(&cube->ray, player);
+		cube->ray.wall_dist = calc_wall(cube);
+		tex = get_wall_tex(cube);
+		calc_rest(cube, tex, x);
+		paint_bg(cube, x);
 	}
-	//mlx_image_to_window(cube->mlx, cube->img, 0, 0);
+	mlx_image_to_window(cube->mlx, cube->img, 0, 0);
+}
+
+void	init_textures(t_cub3d *cube)
+{
+	cube->tex = malloc(sizeof(mlx_texture_t *) * 4);
+	cube->tex[0] = mlx_load_png(cube->data.north);
+	cube->tex[1] = mlx_load_png(cube->data.south);
+	cube->tex[2] = mlx_load_png(cube->data.west);
+	cube->tex[3] = mlx_load_png(cube->data.east);
+}
+
+int	get_wall_tex(t_cub3d *cube)
+{
+	mlx_texture_t	*wall_tex;
+
+	if (cube->ray.wall_side == 1)
+	{
+		if (cube->ray.stepy < 0)
+			wall_tex = /*north*/;
+		if (cube->ray.stepy > 0)
+			wall_tex = /*south*/;
+	}
+	if (cube->ray.wall_side == 0)
+	{
+		if (cube->ray.stepx > 0)
+			wall_tex = /*west*/;
+		if (cube->ray.stepx < 0)
+			wall_tex = /*east*/;
+	}
+	return (wall_tex);
 }

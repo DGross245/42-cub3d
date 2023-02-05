@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/01 13:57:56 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/05 10:34:03 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,27 @@ void	init_map(t_cub3d *cube)
 void	init_player(t_cub3d *cube)
 {
 	cube->player.facing = '\0';
-	cube->player.xppos = -1;
-	cube->player.yppos = -1;
-	cube->player.xpdir = -1;
-	cube->player.ypdir = -1;
+	cube->player.xppos = 0;
+	cube->player.yppos = 0;
+	cube->player.xpdir = 0;
+	cube->player.ypdir = 0;
+	cube->player.plane_x = 0;
+	cube->player.plane_y = 0;
 }
 
-void	init_dot(t_cub3d *cube)
+void	init_ray(t_cub3d *cube)
 {
-	cube->dot.camx = -1;
-	cube->dot.raydirx = -1;
-	cube->dot.raydiry = -1;
-	cube->dot.rayx = -1;
-	cube->dot.rayy = -1;
-	cube->dot.deltadisx = -1;
-	cube->dot.deltadisy = -1;
-	cube->dot.map_x = -1;
-	cube->dot.map_y = -1;
-	cube->dot.sidedis_x = -1;
-	cube->dot.sidedis_y = -1;
+	cube->ray.camx = -1;
+	cube->ray.raydirx = -1;
+	cube->ray.raydiry = -1;
+	cube->ray.rayx = -1;
+	cube->ray.rayy = -1;
+	cube->ray.deltadisx = -1;
+	cube->ray.deltadisy = -1;
+	cube->ray.map_x = -1;
+	cube->ray.map_y = -1;
+	cube->ray.sidedis_x = -1;
+	cube->ray.sidedis_y = -1;
 }
 
 void	init_cub3d(t_cub3d *cube)
@@ -68,6 +70,6 @@ void	init_cub3d(t_cub3d *cube)
 	init_mlx(cube);
 	init_map(cube);
 	init_player(cube);
-	init_dot(cube);
+	init_ray(cube);
 	cube->input = NULL;
 }
