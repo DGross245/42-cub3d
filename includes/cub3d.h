@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:24:29 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 16:56:59 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void	init_map(t_cub3d *cube);
 void	init_player(t_cub3d *cube);
 void	events(void *param);
 void	nuke_trash(t_cub3d	*cube);
+char	*gc_strdup(t_cub3d *cube, const char *s1);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:49:33 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 16:03:43 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,11 @@ char	*remove_line(char *line)
 	if (line[ft_strlen(line) - 1] != '\n')
 	{
 		new_line = ft_strdup(line);
-		free(line);
-		line = NULL;
 		return (new_line);
 	}
 	new_line = ft_calloc((ft_strlen(line) + 1), sizeof(char));
 	ft_strlcpy(new_line, line, ft_strlen(line));
 	new_line[ft_strlen(line)] = '\0';
-	line = NULL;
 	return (new_line);
 }
 
@@ -82,8 +79,10 @@ void	reader(t_cub3d	*cube, int fd)
 	{
 		cube->input = ft_realloc(cube->input, sizeof(char *) * (size + 2));
 		cube->input[size++] = remove_line(line);
+		throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(cube->input[size - 1]));
 		line = get_next_line(fd);
 		throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(line));
 	}
 	cube->input[size] = NULL;
+	throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(cube->input));
 }

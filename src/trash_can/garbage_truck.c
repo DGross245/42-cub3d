@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:37:18 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:48:27 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 15:15:36 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ void	empty_trash(t_bin	*bin)
 	{
 		tmp = bin;
 		bin = bin->next;
-		tmp->free_func(tmp->garbage);
+		if (tmp->garbage != NULL)
+			tmp->free_func(tmp->garbage);
 		free(tmp);
 	}
 }
 
 void	nuke_trash(t_cub3d	*cube)
 {
-	empty_trash(cube->gc.bin);
 	burn_it_down(cube->gc.dump);
+	empty_trash(cube->gc.bin);
 }
