@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_truck.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:37:18 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 22:42:50 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/06 13:48:27 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "trash.h"
 #include "libft.h"
+#include "cub3d.h"
 
 #include <stdlib.h> // free
+
+//Local//
 
 void	*collect_trash(t_bin *bin, int size, int quantity)
 {
@@ -56,4 +59,10 @@ void	empty_trash(t_bin	*bin)
 		tmp->free_func(tmp->garbage);
 		free(tmp);
 	}
+}
+
+void	nuke_trash(t_cub3d	*cube)
+{
+	empty_trash(cube->gc.bin);
+	burn_it_down(cube->gc.dump);
 }

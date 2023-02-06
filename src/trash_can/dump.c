@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:12:22 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/25 22:42:41 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/06 13:39:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "libft.h"
 
 #include <stdlib.h> // free
+
+//Global//
 
 void	*create_pile(t_dump *dump, int size, int quantity)
 {

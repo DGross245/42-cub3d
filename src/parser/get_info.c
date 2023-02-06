@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 23:48:24 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/06 13:25:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static unsigned long	rgba_to_uint(int r, int g, int b, int a)
 			+ (a & 0xff));
 }
 
-static void	check_colour_range(char **str)
+static void	check_colour_range(t_cub3d *cube, char **str)
 {
 	int	i;
 	int	nbr;
@@ -33,11 +33,11 @@ static void	check_colour_range(char **str)
 	{
 		nbr = ft_atoi(str[i]);
 		if (nbr < 0 || nbr > 255)
-			print_error("wrong colour range");
+			print_error(cube, "wrong colour range");
 	}
 }
 
-void	get_colour(t_map *data, char **str)
+void	get_colour(t_cub3d *cube, char **str)
 {
 	char	**colour;
 	int		r;
@@ -45,37 +45,37 @@ void	get_colour(t_map *data, char **str)
 	int		b;
 
 	if (str[1] == NULL)
-		print_error("colours not set ❗");
+		print_error(cube, "colours not set ❗");
 	colour = ft_split(str[1], ',');
 	if (ft_ptrcnt(colour) != 3)
-		print_error("wrong colour ❗");
-	check_colour_range(colour);
+		print_error(cube, "wrong colour ❗");
+	check_colour_range(cube, colour);
 	r = ft_atoi(colour[0]);
 	g = ft_atoi(colour[1]);
 	b = ft_atoi(colour[2]);
 	if (!ft_strcmp(str[0], "F"))
-		data->floor = rgba_to_uint(r, g, b, 255);
+		cube->data.floor = rgba_to_uint(r, g, b, 255);
 	else
-		data->ceiling = rgba_to_uint(r, g, b, 255);
+		cube->data.ceiling = rgba_to_uint(r, g, b, 255);
 }
 
-void	get_path(t_map *data, char **str)
+void	get_path(t_cub3d *cube, char **str)
 {
 	if (!ft_strcmp(str[0], "NO"))
-		data->north = ft_strdup(str[1]);
+		cube->data.north = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "SO"))
-		data->south = ft_strdup(str[1]);
+		cube->data.south = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "WE"))
-		data->west = ft_strdup(str[1]);
+		cube->data.west = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "EA"))
-		data->east = ft_strdup(str[1]);
+		cube->data.east = ft_strdup(str[1]);
 	else if (!ft_strcmp(str[0], "F") || !ft_strcmp(str[0], "C"))
-		get_colour(data, str);
+		get_colour(cube, str);
 	else
-		print_error("missing or wrong identifier ❗");
+		print_error(cube, "missing or wrong identifier ❗");
 }
 
-void	get_map(t_map *data, t_cub3d *cube, int *i)
+void	get_map(t_cub3d *cube, t_map *data, int *i)
 {
 	int	j;
 	int	len;
@@ -89,12 +89,12 @@ void	get_map(t_map *data, t_cub3d *cube, int *i)
 		if (cube->input[y++][0] != '\0')
 			len++;
 		else
-			print_error("invalid map ❗");
+			print_error(cube, "invalid map ❗");
 	}
 	data->map = ft_calloc(len + 1, sizeof(char *));
 	while (cube->input[(*i)])
 		data->map[j++] = ft_strdup(cube->input[(*i)++]);
 	data->map[j] = NULL;
 	(*i)--;
-	check_map(data, &cube->player);
+	check_map(cube);
 }
