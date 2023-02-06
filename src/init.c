@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 23:38:51 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/06 13:43:14 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,7 @@
 #include "macros.h"
 
 #include <stdio.h>
-
-void	init_mlx(t_cub3d *cube)
-{
-	cube->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
-	if (cube->mlx == NULL)
-		print_error("initialization of MLX failed ❗");
-	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
-	if (!cube->img)
-		print_error("initialization of IMG failed ❗");
-}
+#include <stdlib.h> 
 
 void	init_map(t_cub3d *cube)
 {
@@ -50,11 +41,27 @@ void	init_player(t_cub3d *cube)
 	cube->player.plane_y = 0;
 }
 
+void	init_gc(t_cub3d *cube)
+{
+	cube->gc.bin = create_pile(cube->gc.dump, (sizeof(t_bin)), 1);
+	if (!cube->gc.bin)
+		print_error(cube, "gc bin init fail");
+	cube->gc.dump = create_pile(cube->gc.dump, (sizeof(t_dump)), 1);
+	if (!cube->gc.dump)
+		print_error(cube, "gc dump init fail");
+}
+
 void	init_cub3d(t_cub3d *cube)
 {
-	init_mlx(cube);
+	cube->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
+	if (cube->mlx == NULL)
+		print_error(cube, "initialization of MLX failed ❗");
+	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
+	if (!cube->img)
+		print_error(cube, "initialization of IMG failed ❗");
 	init_map(cube);
 	init_player(cube);
+	init_gc(cube);
 	cube->input = NULL;
 }
 
@@ -66,5 +73,5 @@ void	init_textures(t_cub3d *cube)
 	cube->tex.east = mlx_load_png(cube->data.east);
 	if (cube->tex.north == NULL || cube->tex.south == NULL
 		||cube->tex.west == NULL || cube->tex.east == NULL)
-		print_error("MLX PNG ERROR\n");
+		print_error(cube, "MLX PNG ERROR\n");
 }

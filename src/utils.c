@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 09:00:16 by dna               #+#    #+#             */
-/*   Updated: 2023/02/05 23:21:25 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/06 13:28:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	is_valid(char c)
 		return (0);
 }
 
-void	is_player_set(t_cords *player)
+void	is_player_set(t_cub3d *cube)
 {
-	if (player->facing == '\0')
-		print_error("missing player's spawn & orientation ❗");
+	if (cube->player.facing == '\0')
+		print_error(cube, "missing player's spawn & orientation ❗");
 }
 
 int	ft_abs(int x)

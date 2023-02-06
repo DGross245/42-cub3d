@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/26 12:00:16 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:49:33 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	parser(t_cub3d *cube, int argc, char **argv)
 
 	fd = -1;
 	if (argc < 2)
-		print_error("path to map in missing ❗");
+		print_error(cube, "path to map in missing ❗");
 	if (argc > 2)
-		print_error("too many arguments❗");
+		print_error(cube, "too many arguments❗");
 	if (ft_strncmp(argv[1] + (ft_strlen(argv[1]) - 4), ".cub", 4) != 0)
-		print_error("file doesnt end with .cub ❗");
+		print_error(cube, "file doesnt end with .cub ❗");
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 1)
-		print_error("no such file or directory ❗");
+		print_error(cube, "no such file or directory ❗");
 	reader(cube, fd);
 	check_input(cube);
 }
@@ -64,7 +64,6 @@ char	*remove_line(char *line)
 	new_line = ft_calloc((ft_strlen(line) + 1), sizeof(char));
 	ft_strlcpy(new_line, line, ft_strlen(line));
 	new_line[ft_strlen(line)] = '\0';
-	free(line);
 	line = NULL;
 	return (new_line);
 }
@@ -77,12 +76,14 @@ void	reader(t_cub3d	*cube, int fd)
 	size = 0;
 	line = get_next_line(fd);
 	if (!line)
-		print_error("file is empty ❗");
+		print_error(cube, "file is empty ❗");
+	throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(line));
 	while (line != NULL)
 	{
 		cube->input = ft_realloc(cube->input, sizeof(char *) * (size + 2));
 		cube->input[size++] = remove_line(line);
 		line = get_next_line(fd);
+		throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(line));
 	}
 	cube->input[size] = NULL;
 }

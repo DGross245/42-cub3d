@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/05 20:58:20 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/06 12:51:33 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,8 @@ DEPS			= $(addprefix $(OBJ_DIR),$(SRC:.c=.d))
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -g
 
-INCLUDES		= -I./includes -I./libft/includes -I./MLX42/include/MLX42
-LDINCLUDES		= -L./libft -lft
+INCLUDES		= -I./includes -I./libft/includes -I./MLX42/include/MLX42 -Wno-gnu-include-next -ILeakSanitizer/include
+LDINCLUDES		= -L./libft -lft -L./LeakSanitizer -llsan -lc++
 # DEPSFLAGS 		= -MT $@ -MMD -MP -MF $(OBJ_DIR)/%.d
 
 GOINFRE_DIR 	= /Users/$(USER)/goinfre/.brew/opt/glfw/lib

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/05 21:00:11 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:06:51 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void	redraw(t_cub3d *cube)
 	mlx_delete_image(cube->mlx, cube->img);
 	cube->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	if (!cube->img)
-		print_error("MLX IMG error");
+		print_error(cube, "MLX IMG error");
 	calculator(cube, &cube->player);
 }
