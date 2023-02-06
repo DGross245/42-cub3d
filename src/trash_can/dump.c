@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:12:22 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:39:31 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 15:15:40 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	burn_it_down(t_dump *dump)
 	{
 		tmp = dump;
 		dump = dump->next;
-		tmp->free_func(tmp->garbage_pile);
+		if (tmp->garbage_pile != NULL)
+			tmp->free_func(tmp->garbage_pile);
 		free(tmp);
 	}
 }

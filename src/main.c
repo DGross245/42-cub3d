@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:48:36 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 17:47:02 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 17:02:23 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(cube.mlx, &events, &cube);
 	mlx_loop(cube.mlx);
 	mlx_terminate(cube.mlx);
+	nuke_trash(&cube);
 	return (0);
 }

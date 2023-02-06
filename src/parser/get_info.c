@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:25:49 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 18:02:20 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,21 @@ static unsigned long	rgba_to_uint(int r, int g, int b, int a)
 			+ (a & 0xff));
 }
 
-static void	check_colour_range(t_cub3d *cube, char **str)
+static void	check_colour_range(t_cub3d *cube, char **colour, char **str)
 {
 	int	i;
 	int	nbr;
 
 	i = 0;
-	while (str[++i])
+	while (colour[++i])
 	{
-		nbr = ft_atoi(str[i]);
+		nbr = ft_atoi(colour[i]);
 		if (nbr < 0 || nbr > 255)
+		{
+			free_double((void **)colour);
+			free_double((void **)str);
 			print_error(cube, "wrong colour range");
+		}
 	}
 }
 
@@ -45,11 +49,18 @@ void	get_colour(t_cub3d *cube, char **str)
 	int		b;
 
 	if (str[1] == NULL)
+	{
+		free_double((void **)str);
 		print_error(cube, "colours not set ❗");
+	}
 	colour = ft_split(str[1], ',');
 	if (ft_ptrcnt(colour) != 3)
+	{
+		free_double((void **)colour);
+		free_double((void **)str);
 		print_error(cube, "wrong colour ❗");
-	check_colour_range(cube, colour);
+	}
+	check_colour_range(cube, colour, str);
 	r = ft_atoi(colour[0]);
 	g = ft_atoi(colour[1]);
 	b = ft_atoi(colour[2]);
@@ -57,22 +68,31 @@ void	get_colour(t_cub3d *cube, char **str)
 		cube->data.floor = rgba_to_uint(r, g, b, 255);
 	else
 		cube->data.ceiling = rgba_to_uint(r, g, b, 255);
+	free_double((void **)colour);
 }
 
 void	get_path(t_cub3d *cube, char **str)
 {
+	if (str[1] == NULL)
+	{
+		free_double((void **)str);
+		print_error(cube, "missing or wrong identifier ❗");
+	}
 	if (!ft_strcmp(str[0], "NO"))
-		cube->data.north = ft_strdup(str[1]);
+		cube->data.north = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "SO"))
-		cube->data.south = ft_strdup(str[1]);
+		cube->data.south = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "WE"))
-		cube->data.west = ft_strdup(str[1]);
+		cube->data.west = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "EA"))
-		cube->data.east = ft_strdup(str[1]);
+		cube->data.east = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "F") || !ft_strcmp(str[0], "C"))
 		get_colour(cube, str);
 	else
+	{
+		free_double((void **)str);
 		print_error(cube, "missing or wrong identifier ❗");
+	}
 }
 
 void	get_map(t_cub3d *cube, t_map *data, int *i)
@@ -93,8 +113,9 @@ void	get_map(t_cub3d *cube, t_map *data, int *i)
 	}
 	data->map = ft_calloc(len + 1, sizeof(char *));
 	while (cube->input[(*i)])
-		data->map[j++] = ft_strdup(cube->input[(*i)++]);
+		data->map[j++] = gc_strdup(cube, cube->input[(*i)++]);
 	data->map[j] = NULL;
+	throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(data->map));
 	(*i)--;
 	check_map(cube);
 }
