@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/06 12:51:33 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/06 15:25:03 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ obj/%.o: %.c $(HEADERS)
 
 $(NAME): --cub3d_img mlx obj $(OBJ)
 	@$(MAKE) -C ./libft
-	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -framework Cocoa -framework OpenGL -framework IOKit -fsanitize=address -o $(NAME)
 	@echo "$(g)Compiling: Done ✓$(de)"
 
 clean:

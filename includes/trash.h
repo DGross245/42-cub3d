@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:01:20 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:22:35 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 13:46:41 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,25 @@ typedef struct s_gc
 {
 	t_dump	*dump;
 	t_bin	*bin;
+	int		bin_status;
+	int		dump_status;
 }t_gc;
 
 //##########GLOABAL#########//
 
-void	burn_it_down(t_dump *pile);
-void	*create_pile(t_dump *dump, int size, int quantity);
+void	burn_it_down(t_gc *gc, t_dump *pile);
+void	*create_pile(t_gc *gc, int size, int quantity);
 void	pile_up(t_dump **dump, t_dump *pile);
-t_dump	*new_container(void *pile);
+t_dump	*new_container(t_gc *gc, void *pile);
 
 //###########LOCAL###########//
 
-void	empty_trash(t_bin *trash);
-void	*collect_trash(t_bin *trash, int size, int quantity);
+void	empty_trash(t_gc *gc, t_bin *trash);
+void	*collect_trash(t_gc *gc, int size, int quantity);
 
 //#########################//
 
-t_bin	*new_garbage_bag(void *trash);
+t_bin	*new_garbage_bag(t_gc *gc, void *trash);
 void	free_double(void **double_pointer);
 void	throw_garbage_on_top(t_bin **garbage_pile, t_bin *garbage);
 

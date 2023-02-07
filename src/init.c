@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:43:14 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 14:14:00 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,23 @@ void	init_player(t_cub3d *cube)
 
 void	init_gc(t_cub3d *cube)
 {
-	cube->gc.bin = create_pile(cube->gc.dump, (sizeof(t_bin)), 1);
+	cube->gc.bin = malloc(sizeof(t_bin));
 	if (!cube->gc.bin)
 		print_error(cube, "gc bin init fail");
-	cube->gc.dump = create_pile(cube->gc.dump, (sizeof(t_dump)), 1);
+	cube->gc.bin->garbage = NULL;
+	cube->gc.bin->next = NULL;
+	cube->gc.dump = malloc(sizeof(t_dump));
 	if (!cube->gc.dump)
 		print_error(cube, "gc dump init fail");
+	cube->gc.dump->garbage_pile = NULL;
+	cube->gc.dump->next = NULL;
+	cube->gc.bin_status = 1;
+	cube->gc.dump_status = 1;
 }
 
 void	init_cub3d(t_cub3d *cube)
 {
+	init_gc(cube);
 	cube->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	if (cube->mlx == NULL)
 		print_error(cube, "initialization of MLX failed ❗");
@@ -61,8 +68,9 @@ void	init_cub3d(t_cub3d *cube)
 		print_error(cube, "initialization of IMG failed ❗");
 	init_map(cube);
 	init_player(cube);
-	init_gc(cube);
 	cube->input = NULL;
+	cube->c_set = 0;
+	cube->f_set = 0;
 }
 
 void	init_textures(t_cub3d *cube)
