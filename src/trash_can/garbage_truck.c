@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:37:18 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 13:48:27 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 13:53:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,22 @@
 
 //Local//
 
-void	*collect_trash(t_bin *bin, int size, int quantity)
+void	*collect_trash(t_gc *gc, int size, int quantity)
 {
 	void	*trash;
 
 	trash = ft_calloc(quantity, size);
 	if (trash == NULL)
 		return (NULL);
-	throw_garbage_on_top(&bin, new_garbage_bag(trash));
+	throw_garbage_on_top(&gc->bin, new_garbage_bag(gc, trash));
 	return (trash);
 }
 
-t_bin	*new_garbage_bag(void *trash)
+t_bin	*new_garbage_bag(t_gc *gc, void *trash)
 {
 	t_bin	*garbage_bag;
 
+	gc->bin_status = 1;
 	garbage_bag = malloc(sizeof(t_bin));
 	if (garbage_bag == NULL)
 		return (NULL);
@@ -48,21 +49,25 @@ void	throw_garbage_on_top(t_bin **garbage_pile, t_bin *garbage)
 	*garbage_pile = garbage;
 }
 
-void	empty_trash(t_bin	*bin)
+void	empty_trash(t_gc *gc, t_bin	*bin)
 {
 	t_bin	*tmp;
 
+	if (gc->bin_status == 0)
+		return ;
 	while (bin != NULL)
 	{
 		tmp = bin;
 		bin = bin->next;
-		tmp->free_func(tmp->garbage);
+		if (tmp->garbage != NULL)
+			tmp->free_func(tmp->garbage);
 		free(tmp);
 	}
+	gc->bin_status = 0;
 }
 
 void	nuke_trash(t_cub3d	*cube)
 {
-	empty_trash(cube->gc.bin);
-	burn_it_down(cube->gc.dump);
+	empty_trash(&cube->gc, cube->gc.bin);
+	burn_it_down(&cube->gc, cube->gc.dump);
 }
