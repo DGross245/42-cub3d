@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:27:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 20:57:12 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 16:21:06 by lgollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void			go_left(t_cords *player, t_cub3d *cube);
 void			go_right(t_cords *player, t_cub3d *cube);
 void			turn_left(t_cords *player);
 void			turn_right(t_cords *player);
+void 			mouse_position(t_cub3d *mlx, t_cords *player);
 
 #endif
