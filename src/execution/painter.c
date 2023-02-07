@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:11 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 13:58:34 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:13:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	calc_rest(t_cub3d *cube)
 	else
 		cube->ray.wall_dist = fabs((cube->ray.map_y - cube->player.yppos \
 		+ (1 - cube->ray.stepy) / 2) / cube->ray.raydiry);
-	cube->ray.lheight = (int)HEIGHT / cube->ray.wall_dist;
-	start = (-cube->ray.lheight) / 2 + HEIGHT / 2;
+	cube->ray.lheight = (int)cube->mlx->height / cube->ray.wall_dist;
+	start = (-cube->ray.lheight) / 2 + cube->mlx->height / 2;
 	if (start < 0)
 		start = 0;
-	end = cube->ray.lheight / 2 + HEIGHT / 2;
-	if (end >= HEIGHT)
-		end = HEIGHT - 1;
+	end = cube->ray.lheight / 2 + cube->mlx->height / 2;
+	if (end >= cube->mlx->height)
+		end = cube->mlx->height - 1;
 	cube->ray.start = start;
 	cube->ray.end = end;
 }
@@ -49,7 +49,8 @@ void	painter(t_cub3d *cube, mlx_texture_t *texture, int x)
 
 	tex_x = find_wall(cube, texture);
 	step = texture->height / cube->ray.lheight;
-	tex_pos = (cube->ray.start - HEIGHT / 2 + cube->ray.lheight / 2) * step;
+	tex_pos = (cube->ray.start - cube->mlx->height \
+	/ 2 + cube->ray.lheight / 2) * step;
 	i = cube->ray.start;
 	while (i < cube->ray.end)
 	{
@@ -84,7 +85,7 @@ void	paint_bg(t_cub3d	*cube, int x)
 	int				i;
 
 	i = -1;
-	while (++i < HEIGHT)
+	while (++i < cube->mlx->height)
 	{
 		if (i <= cube->ray.start)
 			mlx_put_pixel(cube->img, x, i, cube->data.ceiling);

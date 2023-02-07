@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 21:01:41 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:48:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	calc_player_dir(t_cords *player)
 	}
 }
 
-void	set_ray(t_ray	*ray, t_cords *player, int x)
+static void	set_ray(t_cub3d *cube, t_ray	*ray, t_cords *player, int x)
 {
-	ray->camx = 2 * x / (double)WIDTH - 1;
+	ray->camx = 2 * x / (double)cube->mlx->width - 1;
 	ray->raydirx = player->xpdir + player->plane_x * ray->camx;
 	ray->raydiry = player->ypdir + player->plane_y * ray->camx;
 	ray->map_x = (int)player->xppos;
@@ -84,9 +84,9 @@ void	calculator(t_cub3d *cube, t_cords *player)
 	mlx_texture_t		*tex;
 
 	x = -1;
-	while (++x < WIDTH)
+	while (++x < cube->mlx->width)
 	{
-		set_ray(&cube->ray, player, x);
+		set_ray(cube, &cube->ray, player, x);
 		calc_dir(&cube->ray, player);
 		dda(cube);
 		tex = get_wall_tex(cube);
