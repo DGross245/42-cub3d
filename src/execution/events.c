@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/06 13:06:51 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/06 19:16:09 by lgollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	events(void *param)
 	t_cub3d	*cube;
 
 	cube = (t_cub3d *)param;
+	mlx_set_window_limit(cube->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cube->mlx);
 	if ((mlx_is_key_down(cube->mlx, MLX_KEY_W)
@@ -36,6 +37,7 @@ void	events(void *param)
 		turn_right(&cube->player);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_Q))
 		turn_left(&cube->player);
+	mouse_position(cube, &cube->player);
 	redraw(cube);
 }
 
