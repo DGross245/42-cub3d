@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 16:58:19 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 13:01:43 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 void	check_is_set(t_cub3d *cube)
 {
 	if (cube->data.east == NULL || cube->data.west == NULL
-		|| cube->data.north == NULL || cube->data.south == NULL)
+		|| cube->data.north == NULL || cube->data.south == NULL
+		|| cube->f_set == 0 || cube->c_set == 0)
 		print_error(cube, "missing identifier❗");
 }
 

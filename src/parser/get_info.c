@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 18:02:20 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 14:26:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@
 #include <stddef.h> // NULL
 #include <stdio.h>
 
-static unsigned long	rgba_to_uint(int r, int g, int b, int a)
-{
-	return (((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) \
-			+ (a & 0xff));
-}
-
 static void	check_colour_range(t_cub3d *cube, char **colour, char **str)
 {
 	int	i;
 	int	nbr;
 
-	i = 0;
+	i = -1;
 	while (colour[++i])
 	{
 		nbr = ft_atoi(colour[i]);
@@ -41,12 +35,30 @@ static void	check_colour_range(t_cub3d *cube, char **colour, char **str)
 	}
 }
 
+static void	set_colour(t_cub3d *cube, char **colour, char **str)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = ft_atoi(colour[0]);
+	g = ft_atoi(colour[1]);
+	b = ft_atoi(colour[2]);
+	if (!ft_strcmp(str[0], "F"))
+	{
+		cube->data.floor = rgba_to_uint(r, g, b, 255);
+		cube->f_set = 1;
+	}
+	else
+	{
+		cube->data.ceiling = rgba_to_uint(r, g, b, 255);
+		cube->c_set = 1;
+	}
+}
+
 void	get_colour(t_cub3d *cube, char **str)
 {
 	char	**colour;
-	int		r;
-	int		g;
-	int		b;
 
 	if (str[1] == NULL)
 	{
@@ -61,13 +73,7 @@ void	get_colour(t_cub3d *cube, char **str)
 		print_error(cube, "wrong colour ❗");
 	}
 	check_colour_range(cube, colour, str);
-	r = ft_atoi(colour[0]);
-	g = ft_atoi(colour[1]);
-	b = ft_atoi(colour[2]);
-	if (!ft_strcmp(str[0], "F"))
-		cube->data.floor = rgba_to_uint(r, g, b, 255);
-	else
-		cube->data.ceiling = rgba_to_uint(r, g, b, 255);
+	set_colour(cube, colour, str);
 	free_double((void **)colour);
 }
 
@@ -115,7 +121,7 @@ void	get_map(t_cub3d *cube, t_map *data, int *i)
 	while (cube->input[(*i)])
 		data->map[j++] = gc_strdup(cube, cube->input[(*i)++]);
 	data->map[j] = NULL;
-	throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(data->map));
+	pile_up(&cube->gc.dump, new_container(&cube->gc, data->map));
 	(*i)--;
 	check_map(cube);
 }
