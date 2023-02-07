@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 16:03:43 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 14:09:01 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	parser(t_cub3d *cube, int argc, char **argv)
 		print_error(cube, "no such file or directory ❗");
 	reader(cube, fd);
 	check_input(cube);
+	empty_trash(&cube->gc, cube->gc.bin);
 }
 
 void	*ft_realloc(void *ptr, size_t new_size)
@@ -74,15 +75,17 @@ void	reader(t_cub3d	*cube, int fd)
 	line = get_next_line(fd);
 	if (!line)
 		print_error(cube, "file is empty ❗");
-	throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(line));
+	throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(&cube->gc, line));
 	while (line != NULL)
 	{
 		cube->input = ft_realloc(cube->input, sizeof(char *) * (size + 2));
 		cube->input[size++] = remove_line(line);
-		throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(cube->input[size - 1]));
+		throw_garbage_on_top(&cube->gc.bin, \
+		new_garbage_bag(&cube->gc, cube->input[size - 1]));
 		line = get_next_line(fd);
-		throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(line));
+		throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(&cube->gc, line));
 	}
 	cube->input[size] = NULL;
-	throw_garbage_on_top(&cube->gc.bin, new_garbage_bag(cube->input));
+	throw_garbage_on_top(&cube->gc.bin, \
+	new_garbage_bag(&cube->gc, cube->input));
 }

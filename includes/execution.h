@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:27:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/05 20:57:12 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 13:18:12 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "MLX42.h"
 
 void			calculator(t_cub3d *cube, t_cords *player);
-int				ft_abs(int x);
 void			paint_bg(t_cub3d	*cube, int x);
 int				find_wall(t_cub3d *cube, mlx_texture_t *texture);
 void			dda(t_cub3d *cube);

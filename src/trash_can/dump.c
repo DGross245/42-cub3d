@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:12:22 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/06 15:15:40 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/07 13:51:05 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,22 @@
 
 //Global//
 
-void	*create_pile(t_dump *dump, int size, int quantity)
+void	*create_pile(t_gc *gc, int size, int quantity)
 {
 	void	*pile;
 
 	pile = ft_calloc(quantity, size);
 	if (pile == NULL)
 		return (NULL);
-	pile_up(&dump, new_container(pile));
+	pile_up(&gc->dump, new_container(gc, pile));
 	return (pile);
 }
 
-t_dump	*new_container(void *pile)
+t_dump	*new_container(t_gc *gc, void *pile)
 {
 	t_dump	*container;
 
+	gc->dump_status = 1;
 	container = malloc(sizeof(t_dump));
 	if (container == NULL)
 		return (NULL);
@@ -47,10 +48,12 @@ void	pile_up(t_dump **dump, t_dump *pile)
 	*dump = pile;
 }
 
-void	burn_it_down(t_dump *dump)
+void	burn_it_down(t_gc *gc, t_dump *dump)
 {
 	t_dump	*tmp;
 
+	if (gc->dump_status == 0)
+		return ;
 	while (dump != NULL)
 	{
 		tmp = dump;
@@ -59,6 +62,7 @@ void	burn_it_down(t_dump *dump)
 			tmp->free_func(tmp->garbage_pile);
 		free(tmp);
 	}
+	gc->dump_status = 0;
 }
 
 void	free_double(void **double_pointer)
