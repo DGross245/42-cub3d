@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 14:14:00 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/08 12:21:21 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_map(t_cub3d *cube)
 	cube->data.south = NULL;
 	cube->data.west = NULL;
 	cube->data.east = NULL;
+	cube->data.door = NULL;
 	cube->data.ceiling = 0;
 	cube->data.floor = 0;
 	cube->data.map = NULL;
@@ -79,6 +80,7 @@ void	init_textures(t_cub3d *cube)
 	cube->tex.west = mlx_load_png(cube->data.west);
 	cube->tex.south = mlx_load_png(cube->data.south);
 	cube->tex.east = mlx_load_png(cube->data.east);
+	cube->tex.door = mlx_load_png(cube->data.door);
 	if (cube->tex.north == NULL || cube->tex.south == NULL
 		||cube->tex.west == NULL || cube->tex.east == NULL)
 		print_error(cube, "MLX PNG ERROR\n");

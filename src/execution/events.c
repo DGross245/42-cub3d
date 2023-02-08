@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/07 16:59:41 by lgollong         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:14:24 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	events(void *param)
 	if ((mlx_is_key_down(cube->mlx, MLX_KEY_S)
 			|| mlx_is_key_down(cube->mlx, MLX_KEY_DOWN)))
 		go_down(&cube->player, cube);
-	if (mlx_is_key_down(cube->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_A)
+		|| mlx_is_key_down(cube->mlx, MLX_KEY_LEFT))
 		go_left(&cube->player, cube);
-	if (mlx_is_key_down(cube->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_D)
+		|| mlx_is_key_down(cube->mlx, MLX_KEY_RIGHT))
 		go_right(&cube->player, cube);
-	if (mlx_is_key_down(cube->mlx, MLX_KEY_E))
-		turn_right(&cube->player);
-	if (mlx_is_key_down(cube->mlx, MLX_KEY_Q))
-		turn_left(&cube->player);
+	else if (mlx_is_key_down(cube->mlx, MLX_KEY_E))
+		door(cube, &cube->player);
 	mouse_position(cube, &cube->player);
 	redraw(cube);
 }

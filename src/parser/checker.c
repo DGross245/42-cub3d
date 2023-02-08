@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 13:01:43 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/08 12:20:57 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_is_set(t_cub3d *cube)
 {
 	if (cube->data.east == NULL || cube->data.west == NULL
 		|| cube->data.north == NULL || cube->data.south == NULL
-		|| cube->f_set == 0 || cube->c_set == 0)
+		|| cube->f_set == 0 || cube->c_set == 0 || cube->data.door == NULL)
 		print_error(cube, "missing identifier❗");
 }
 
@@ -105,7 +105,8 @@ void	check_map(t_cub3d *cube)
 				print_error(cube, "invalid map ❗");
 			else if (is_start_position(cube, x, y) && cube->data.map[x + 1])
 				check_surrounding(cube, x, y);
-			else if (cube->data.map[x][y] != '0' && cube->data.map[x][y] != '1')
+			else if (cube->data.map[x][y] != '0' && cube->data.map[x][y] != '1'
+				&& cube->data.map[x][y] != '2')
 				print_error(cube, "invalid map ❗");
 		}
 	}

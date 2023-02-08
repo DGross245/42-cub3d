@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:27:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 16:59:37 by lgollong         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:14:17 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void			calc_player_dir(t_cords *player);
 void			redraw(t_cub3d *cube);
 unsigned int	hex_to_uint(char *hex);
 void			painter(t_cub3d *cube, mlx_texture_t *texture, int x);
-
+void			door(t_cub3d *cube, t_cords *player);
 void			go_up(t_cords *player, t_cub3d *cube);
 void			go_down(t_cords *player, t_cub3d *cube);
 void			go_left(t_cords *player, t_cub3d *cube);
 void			go_right(t_cords *player, t_cub3d *cube);
 void			turn_left(t_cords *player);
 void			turn_right(t_cords *player);
-void 			mouse_position(t_cub3d *mlx, t_cords *player);
+void			mouse_position(t_cub3d *mlx, t_cords *player);
 
 #endif

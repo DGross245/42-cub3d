@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 14:26:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/08 10:03:03 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	get_path(t_cub3d *cube, char **str)
 		cube->data.west = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "EA"))
 		cube->data.east = gc_strdup(cube, str[1]);
+	else if (!ft_strcmp(str[0], "D"))
+		cube->data.door = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "F") || !ft_strcmp(str[0], "C"))
 		get_colour(cube, str);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turn.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 10:02:16 by dna               #+#    #+#             */
-/*   Updated: 2023/02/07 16:41:28 by lgollong         ###   ########.fr       */
+/*   Updated: 2023/02/08 08:24:45 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	turn_mouse(t_cords *player, double rot)
 	player->plane_y = tmp_plane_x * sin(rot) + player->plane_y * cos(rot);
 }
 
-void mouse_position(t_cub3d *cube, t_cords *player)
+void	mouse_position(t_cub3d *cube, t_cords *player)
 {
 	int32_t			xpos;
 	int32_t			ypos;
@@ -68,7 +68,7 @@ void mouse_position(t_cub3d *cube, t_cords *player)
 	rot = 0;
 	mlx_get_mouse_pos(cube->mlx, &xpos, &ypos);
 	if (xpos == WIDTH / 2 && ypos == HEIGHT / 2)
-		return ; 
+		return ;
 	if (xpos < WIDTH / 2)
 	{
 		angle = (xpos - WIDTH / 2);
