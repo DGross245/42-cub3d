@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   painter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:11 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 16:13:24 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/08 09:58:25 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	calc_rest(t_cub3d *cube)
 	if (cube->ray.wall_side == 0)
 		cube->ray.wall_dist = fabs((cube->ray.map_x - cube->player.xppos \
 		+ (1 - cube->ray.stepx) / 2) / cube->ray.raydirx);
-	else
+	if (cube->ray.wall_side == 1)
 		cube->ray.wall_dist = fabs((cube->ray.map_y - cube->player.yppos \
 		+ (1 - cube->ray.stepy) / 2) / cube->ray.raydiry);
 	cube->ray.lheight = (int)cube->mlx->height / cube->ray.wall_dist;

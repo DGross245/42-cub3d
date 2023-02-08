@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 16:41:44 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/08 10:05:20 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_map
 	char			**map;
 	int				height;
 	int				width;
+	char			*door;
 }t_map;
 
 typedef struct s_cords
@@ -46,6 +47,7 @@ typedef struct s_tex
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
+	mlx_texture_t	*door;
 }t_tex;
 
 typedef struct s_ray
