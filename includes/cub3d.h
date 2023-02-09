@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/09 14:58:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:13:43 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_cub3d
 	int				c_set;
 	int				f_set;
 	int				door;
+	float			mov_speed;
 }t_cub3d;
 
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
