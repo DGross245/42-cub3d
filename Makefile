@@ -6,11 +6,11 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/09 14:36:58 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/09 17:04:31 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= cub3d
+NAME			= cub3D
 
 LIBFT			= libft/libft.a
 MLX				= MLX42/libmlx42.a

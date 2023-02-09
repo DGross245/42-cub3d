@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   go.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:44:34 by dna               #+#    #+#             */
-/*   Updated: 2023/02/08 10:27:54 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/09 18:08:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	go_up(t_cords *player, t_cub3d *cube)
 	double	tmp_x;
 	double	tmp_y;
 
-	tmp_x = player->xppos + player->xpdir * 0.08;
-	tmp_y = player->yppos + player->ypdir * 0.08;
+	tmp_x = player->xppos + player->xpdir * cube->mov_speed;
+	tmp_y = player->yppos + player->ypdir * cube->mov_speed;
 	if (cube->data.map[(int)tmp_x][(int)tmp_y] == '0'
 		|| cube->data.map[(int)tmp_x][(int)tmp_y] == '3')
 	{
@@ -36,8 +36,8 @@ void	go_down(t_cords *player, t_cub3d *cube)
 	double	tmp_x;
 	double	tmp_y;
 
-	tmp_x = player->xppos - player->xpdir * 0.08;
-	tmp_y = player->yppos - player->ypdir * 0.08;
+	tmp_x = player->xppos - player->xpdir * cube->mov_speed;
+	tmp_y = player->yppos - player->ypdir * cube->mov_speed;
 	if (cube->data.map[(int)tmp_x][(int)tmp_y] == '0'
 		|| cube->data.map[(int)tmp_x][(int)tmp_y] == '3')
 	{
@@ -51,8 +51,8 @@ void	go_left(t_cords *player, t_cub3d *cube)
 	double	tmp_x;
 	double	tmp_y;
 
-	tmp_x = player->xppos - player->ypdir * 0.08;
-	tmp_y = player->yppos + player->xpdir * 0.08;
+	tmp_x = player->xppos - player->ypdir * cube->mov_speed;
+	tmp_y = player->yppos + player->xpdir * cube->mov_speed;
 	if (cube->data.map[(int)tmp_x][(int)tmp_y] == '0'
 		|| cube->data.map[(int)tmp_x][(int)tmp_y] == '3')
 	{
@@ -66,8 +66,8 @@ void	go_right(t_cords *player, t_cub3d *cube)
 	double	tmp_x;
 	double	tmp_y;
 
-	tmp_x = player->xppos + player->ypdir * 0.08;
-	tmp_y = player->yppos - player->xpdir * 0.08;
+	tmp_x = player->xppos + player->ypdir * cube->mov_speed;
+	tmp_y = player->yppos - player->xpdir * cube->mov_speed;
 	if (cube->data.map[(int)tmp_x][(int)tmp_y] == '0'
 		|| cube->data.map[(int)tmp_x][(int)tmp_y] == '3')
 	{
