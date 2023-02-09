@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/08 10:06:28 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/09 14:45:11 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ void	calculator(t_cub3d *cube, t_cords *player)
 		dda(cube);
 		tex = get_wall_tex(cube);
 		calc_rest(cube);
-		if (cube->ray.wall_hit == 2)
-			tex = cube->tex.door;
 		painter(cube, tex, x);
 		paint_bg(cube, x);
 	}
@@ -117,5 +115,5 @@ mlx_texture_t	*get_wall_tex(t_cub3d *cube)
 		else if (cube->ray.stepx < 0)
 			wall_tex = cube->tex.east;
 	}
-	return (wall_tex);
+	return (is_door(cube, wall_tex));
 }

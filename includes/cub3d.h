@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/08 10:05:20 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/09 14:58:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_tex
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
 	mlx_texture_t	*door;
+	mlx_texture_t	*door_open;
 }t_tex;
 
 typedef struct s_ray
@@ -87,6 +88,7 @@ typedef struct s_cub3d
 	int				tmp_y;
 	int				c_set;
 	int				f_set;
+	int				door;
 }t_cub3d;
 
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:27:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/08 12:14:17 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/09 14:54:04 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void			go_right(t_cords *player, t_cub3d *cube);
 void			turn_left(t_cords *player);
 void			turn_right(t_cords *player);
 void			mouse_position(t_cub3d *mlx, t_cords *player);
+mlx_texture_t	*is_door(t_cub3d *cube, mlx_texture_t *wall_tex);
 
 #endif
