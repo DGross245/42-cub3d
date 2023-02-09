@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lgollong <lgollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/08 12:14:24 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/09 15:12:06 by lgollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	events(void *param)
 	t_cub3d	*cube;
 
 	cube = (t_cub3d *)param;
-	mlx_set_window_limit(cube->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cube->mlx);
 	if ((mlx_is_key_down(cube->mlx, MLX_KEY_W)
