@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/09 18:14:10 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/09 18:24:27 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	events(void *param)
 
 	cube = (t_cub3d *)param;
 	cube->mov_speed = 0.08;
-	mlx_set_window_limit(cube->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cube->mlx);
 	go(cube);
