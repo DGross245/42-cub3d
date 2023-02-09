@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:06:08 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/08 11:23:59 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/09 14:49:19 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,19 @@ void	dda(t_cub3d *cube)
 		}
 		if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '1')
 			cube->ray.wall_hit = 1;
-		else if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '2'
-			|| cube->data.map[cube->ray.map_x][cube->ray.map_y] == '3')
+		else if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '2')
 			cube->ray.wall_hit = 2;
+		else if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '3')
+			cube->ray.wall_hit = 3;
 	}
+}
+
+mlx_texture_t	*is_door(t_cub3d *cube, mlx_texture_t *wall_tex)
+{
+	if (cube->ray.wall_hit == 2)
+		return (cube->tex.door);
+	if (cube->ray.wall_hit == 3)
+		return (cube->tex.door_open);
+	else
+		return (wall_tex);
 }

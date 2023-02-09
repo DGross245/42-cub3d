@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/08 10:22:53 by dna              ###   ########.fr        #
+#    Updated: 2023/02/09 14:36:58 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ CFLAGS			= -Wall -Wextra -Werror -g
 
 INCLUDES		= -I./includes -I./libft/includes -I./MLX42/include/MLX42 #-Wno-gnu-include-next -ILeakSanitizer/include
 LDINCLUDES		= -L./libft -lft #-L./LeakSanitizer -llsan -lc++
-# DEPSFLAGS 		= -MT $@ -MMD -MP -MF $(OBJ_DIR)/%.d
 
 GOINFRE_DIR 	= /Users/$(USER)/goinfre/.brew/opt/glfw/lib
 BREW_DIR 		= /Users/$(USER)/.brew/opt/glfw/lib
