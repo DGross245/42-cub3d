@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/09 18:13:43 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:10:58 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:51:17 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "MLX42.h"
-# include "trash.h"
+# include "trash_bonus.h"
 
 typedef struct s_map
 {
@@ -103,5 +103,9 @@ void	init_player(t_cub3d *cube);
 void	events(void *param);
 void	nuke_trash(t_cub3d	*cube);
 char	*gc_strdup(t_cub3d *cube, const char *s1);
+
+//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
+//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
 #endif

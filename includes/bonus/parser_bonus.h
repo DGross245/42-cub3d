@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 08:25:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/07 14:27:23 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:11:02 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:51:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PARSER_BONUS_H
+# define PARSER_BONUS_H
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
+
+//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
+//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
 void			parser(t_cub3d *cube, int argc, char **argv);
 void			reader(t_cub3d *cube, int fd);
@@ -29,5 +33,9 @@ int				is_valid(char c);
 int				is_start_position(t_cub3d *cube, int y, int x);
 void			is_player_set(t_cub3d *cube);
 unsigned long	rgba_to_uint(int r, int g, int b, int a);
+
+//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
+//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
 #endif

@@ -1,10 +1,10 @@
-NO textures/north.png
-SO textures/north.png
-WE textures/north.png
-EA textures/north.png
-    
-F 120,100,88
-C 125,30,90
+EA ./textures/east.png
+NO ./textures/north.png
+SO ./textures/south.png
+WE ./textures/west.png
+
+C 255,255,255
+F 255,255,0
 
 11111
 10001

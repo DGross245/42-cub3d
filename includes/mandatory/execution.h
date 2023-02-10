@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:27:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/09 18:13:46 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:12:12 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "cub3d.h"
 # include "MLX42.h"
+
+//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
+//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
 void			calculator(t_cub3d *cube, t_cords *player);
 void			paint_bg(t_cub3d	*cube, int x);
@@ -32,9 +36,12 @@ void			go_up(t_cords *player, t_cub3d *cube);
 void			go_down(t_cords *player, t_cub3d *cube);
 void			go_left(t_cords *player, t_cub3d *cube);
 void			go_right(t_cords *player, t_cub3d *cube);
-void			turn_left(t_cords *player);
-void			turn_right(t_cords *player);
+void			turn(t_cords *player, double angle);
 void			mouse_position(t_cub3d *mlx, t_cords *player);
 mlx_texture_t	*is_door(t_cub3d *cube, mlx_texture_t *wall_tex);
+
+//  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
+//:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
+//'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `
 
 #endif

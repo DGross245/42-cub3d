@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/05 09:47:35 by dna               #+#    #+#             */
-/*   Updated: 2023/02/10 13:43:56 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:28:12 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:29:20 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "execution_bonus.h"
 #include "MLX42.h"
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	go(t_cub3d *cube)
 {
@@ -39,9 +39,13 @@ void	events(void *param)
 
 	cube = (t_cub3d *)param;
 	cube->mov_speed = 0.08;
+	mlx_set_cursor_mode(cube->mlx, MLX_MOUSE_HIDDEN);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cube->mlx);
 	go(cube);
+	if (mlx_is_key_down(cube->mlx, MLX_KEY_E))
+		door(cube, &cube->player);
+	mouse_position(cube, &cube->player);
 	redraw(cube);
 }
 

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 09:00:16 by dna               #+#    #+#             */
-/*   Updated: 2023/02/10 13:42:05 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:30:58 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:34:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "parser_bonus.h"
 #include "libft.h"
 
 #include <stddef.h> // size_t NULL
@@ -24,7 +24,8 @@ int	ft_isspace(int c)
 
 int	is_valid(char c)
 {
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0' || c == '1')
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0' || c == '1'
+		|| c == '2')
 		return (1);
 	else
 		return (0);

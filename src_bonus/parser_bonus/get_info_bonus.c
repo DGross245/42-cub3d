@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_info.c                                         :+:      :+:    :+:   */
+/*   get_info_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:43:09 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:30:48 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:32:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "parser_bonus.h"
 #include "libft.h" // ft_atoi ft_strcmp ft_split ft_ptrcnt ft_calloc
 
 #include <fcntl.h> // open
@@ -91,6 +91,8 @@ void	get_path(t_cub3d *cube, char **str)
 		cube->data.west = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "EA"))
 		cube->data.east = gc_strdup(cube, str[1]);
+	else if (!ft_strcmp(str[0], "D"))
+		cube->data.door = gc_strdup(cube, str[1]);
 	else if (!ft_strcmp(str[0], "F") || !ft_strcmp(str[0], "C"))
 		get_colour(cube, str);
 	else

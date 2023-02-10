@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:41:50 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:30:54 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 14:14:55 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 #include "libft.h"
 
 #include <stdlib.h> // malloc 
@@ -21,6 +21,7 @@ void	init_map(t_cub3d *cube)
 	cube->data.south = NULL;
 	cube->data.west = NULL;
 	cube->data.east = NULL;
+	cube->data.door = NULL;
 	cube->data.ceiling = 0;
 	cube->data.floor = 0;
 	cube->data.map = NULL;
@@ -58,10 +59,10 @@ void	init_gc(t_cub3d *cube)
 void	init_cub3d(t_cub3d *cube)
 {
 	init_gc(cube);
-	cube->mlx = mlx_init(1920, 1080, "cub3d", true);
+	cube->mlx = mlx_init(1000, 500, "cub3d", true);
 	if (cube->mlx == NULL)
 		print_error(cube, "initialization of MLX failed ❗");
-	cube->img = mlx_new_image(cube->mlx, 1920, 1080);
+	cube->img = mlx_new_image(cube->mlx, 1000, 500);
 	if (!cube->img)
 		print_error(cube, "initialization of IMG failed ❗");
 	init_map(cube);
@@ -69,6 +70,7 @@ void	init_cub3d(t_cub3d *cube)
 	cube->input = NULL;
 	cube->c_set = 0;
 	cube->f_set = 0;
+	cube->door = 2;
 }
 
 void	init_textures(t_cub3d *cube)
@@ -77,6 +79,8 @@ void	init_textures(t_cub3d *cube)
 	cube->tex.west = mlx_load_png(cube->data.west);
 	cube->tex.south = mlx_load_png(cube->data.south);
 	cube->tex.east = mlx_load_png(cube->data.east);
+	cube->tex.door = mlx_load_png(cube->data.door);
+	cube->tex.door_open = mlx_load_png("./textures/open_door.png");
 	if (cube->tex.north == NULL || cube->tex.south == NULL
 		||cube->tex.west == NULL || cube->tex.east == NULL)
 		print_error(cube, "MLX PNG ERROR\n");

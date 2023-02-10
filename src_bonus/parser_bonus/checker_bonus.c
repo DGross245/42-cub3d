@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:40:39 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:30:46 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:51:44 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "execution.h"
-#include "trash.h"
+#include "parser_bonus.h"
+#include "execution_bonus.h"
+#include "trash_bonus.h"
 #include "libft.h" // ft_split ft_isdigit ft_ptrcnt
 
 void	check_is_set(t_cub3d *cube)
 {
 	if (cube->data.east == NULL || cube->data.west == NULL
 		|| cube->data.north == NULL || cube->data.south == NULL
-		|| cube->f_set == 0 || cube->c_set == 0)
+		|| cube->f_set == 0 || cube->c_set == 0 || cube->data.door == NULL)
 		print_error(cube, "missing identifier❗");
 }
 

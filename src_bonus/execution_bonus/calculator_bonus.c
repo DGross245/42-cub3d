@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculator.c                                       :+:      :+:    :+:   */
+/*   calculator_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:39:23 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:27:12 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:27:22 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
-#include "cub3d.h"
+#include "execution_bonus.h"
+#include "cub3d_bonus.h"
 
 #include <math.h> // sqrt pow
 
@@ -112,5 +112,5 @@ mlx_texture_t	*get_wall_tex(t_cub3d *cube)
 		else if (cube->ray.stepx < 0)
 			wall_tex = cube->tex.east;
 	}
-	return (wall_tex);
+	return (is_door(cube, wall_tex));
 }
