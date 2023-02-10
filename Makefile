@@ -6,26 +6,37 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/09 17:04:31 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/10 13:57:06 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= cub3D
+BONUS			= cub3D_bonus
 
 LIBFT			= libft/libft.a
 MLX				= MLX42/libmlx42.a
 
 VPATH			= src:\
+				  src_bonus:\
 				  src/trash_can:\
+				  src_bonus/trash_can_bonus:\
 				  src/parser:\
+				  src_bonus/parser_bonus:\
 				  src/execution:\
-				  includes:
+				  src_bonus/execution_bonus:\
+				  includes/mandatory:\
+				  includes/bonus:\
+				  
 
 HEADERS			= cub3d.h\
 				  execution.h\
-				  macros.h\
 				  parser.h\
 				  trash.h
+
+HEADERS_BONUS	= cub3d_bonus.h\
+				  execution_bonus.h\
+				  parser_bonus.h\
+				  trash_bonus.h
 
 SRC				= main.c\
 				  parser.c\
@@ -41,17 +52,37 @@ SRC				= main.c\
 				  painter.c\
 				  dda.c\
 				  go.c\
-				  turn.c\
-				  open.c
-			  
+				  turn.c
+
+SRC_BONUS		= main_bonus.c\
+				  parser_bonus.c\
+				  error_bonus.c\
+				  dump_bonus.c\
+				  garbage_truck_bonus.c\
+				  init_bonus.c\
+				  checker_bonus.c\
+				  get_info_bonus.c\
+				  utils_bonus.c\
+				  calculator_bonus.c\
+				  events_bonus.c\
+				  painter_bonus.c\
+				  dda_bonus.c\
+				  go_bonus.c\
+				  turn_bonus.c\
+				  open_bonus.c
+		  
 OBJ_DIR			= ./obj/
+OBJ_DIR_BONUS	= ./obj_bonus/
 OBJ				= $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
+OBJ_BONUS		= $(addprefix $(OBJ_DIR_BONUS),$(SRC_BONUS:.c=.o))
 DEPS			= $(addprefix $(OBJ_DIR),$(SRC:.c=.d))
+DEPS_BONUS		= $(addprefix $(OBJ_DIR_BONUS),$(SRC_BONUS:.c=.d))
 
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -g
 
-INCLUDES		= -I./includes -I./libft/includes -I./MLX42/include/MLX42 #-Wno-gnu-include-next -ILeakSanitizer/include
+INCLUDES_BONUS  = -I./includes/bonus -I./libft/includes -I./MLX42/include/MLX42 #-Wno-gnu-include-next -ILeakSanitizer/include
+INCLUDES		= -I./includes/mandatory -I./libft/includes -I./MLX42/include/MLX42 #-Wno-gnu-include-next -ILeakSanitizer/include
 LDINCLUDES		= -L./libft -lft #-L./LeakSanitizer -llsan -lc++
 
 GOINFRE_DIR 	= /Users/$(USER)/goinfre/.brew/opt/glfw/lib
@@ -80,6 +111,9 @@ all: $(NAME)
 obj:
 	@mkdir -p $(OBJ_DIR)
 
+obj_bonus:
+	@mkdir -p $(OBJ_DIR_BONUS)
+
 mlx:
 	@$(MAKE) -C ./MLX42
 
@@ -87,20 +121,29 @@ obj/%.o: %.c $(HEADERS)
 	@echo "$(g)Compiling: $(white)$<$(de)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+obj_bonus/%.o: %.c $(HEADERS_BONUS)
+	@echo "$(left)Compiling: $(white)$<$(de)"
+	@$(CC) $(CFLAGS) $(INCLUDES_BONUS) -c $< -o $@
+
 $(NAME): --cub3d_img mlx obj $(OBJ)
 	@$(MAKE) -C ./libft
-	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -framework Cocoa -framework OpenGL -framework IOKit -fsanitize=address -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(MLX) $(LIBFT) $(LDINCLUDES) -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME)
 	@echo "$(g)Compiling: Done ✓$(de)"
+
+bonus: --cub3d_img mlx obj_bonus $(OBJ_BONUS)
+	@$(MAKE) -C ./libft
+	@$(CC) $(OBJ_BONUS) $(CFLAGS) $(INCLUDES_BONUS) $(MLX) $(LIBFT) $(LDINCLUDES) -framework Cocoa -framework OpenGL -framework IOKit -o $(BONUS)
+	@echo "$(left)Compiling: Done ✓$(de)"
 
 clean:
 	@$(MAKE) clean -C libft/
 	@$(MAKE) clean -C MLX42/
-	@$(RM) -rf obj
+	@$(RM) -rf obj obj_bonus
 
 fclean: clean
 	@$(MAKE) fclean -C libft/
 	@$(MAKE) fclean -C MLX42/
-	@$(RM) -rf $(NAME)
+	@$(RM) -rf $(NAME) $(BONUS)
 
 re: fclean all
 
@@ -160,5 +203,3 @@ re: fclean all
 	@echo ""
 	@echo "╚═════════════════════════════════════════════════════════════════════════════════════════════╝ "
 	@echo ""
-
-# -include $(DEPS)

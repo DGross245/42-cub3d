@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 15:45:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:06:46 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:30:50 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:33:39 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "parser.h"
+#include "cub3d_bonus.h"
+#include "parser_bonus.h"
 #include "libft.h" // ft_strncmp ft_strlen ft_memcpy ft_strdup ft_calloc
 #include "get_next_line.h" // get_next_line
 

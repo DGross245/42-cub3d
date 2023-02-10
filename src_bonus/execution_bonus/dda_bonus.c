@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda.c                                              :+:      :+:    :+:   */
+/*   dda_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 15:06:08 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:39:34 by dgross           ###   ########.fr       */
+/*   Created: 2023/02/10 13:27:34 by dgross            #+#    #+#             */
+/*   Updated: 2023/02/10 13:30:39 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	dda(t_cub3d *cube)
 {
@@ -30,5 +30,19 @@ void	dda(t_cub3d *cube)
 		}
 		if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '1')
 			cube->ray.wall_hit = 1;
+		else if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '2')
+			cube->ray.wall_hit = 2;
+		else if (cube->data.map[cube->ray.map_x][cube->ray.map_y] == '3')
+			cube->ray.wall_hit = 3;
 	}
+}
+
+mlx_texture_t	*is_door(t_cub3d *cube, mlx_texture_t *wall_tex)
+{
+	if (cube->ray.wall_hit == 2)
+		return (cube->tex.door);
+	if (cube->ray.wall_hit == 3)
+		return (cube->tex.door_open);
+	else
+		return (wall_tex);
 }
