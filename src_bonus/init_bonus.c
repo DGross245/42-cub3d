@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:30:54 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 14:14:55 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/11 10:39:52 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	init_gc(t_cub3d *cube)
 void	init_cub3d(t_cub3d *cube)
 {
 	init_gc(cube);
-	cube->mlx = mlx_init(1000, 500, "cub3d", true);
+	cube->mlx = mlx_init(1920, 1080, "cub3d", true);
 	if (cube->mlx == NULL)
 		print_error(cube, "initialization of MLX failed ❗");
-	cube->img = mlx_new_image(cube->mlx, 1000, 500);
+	cube->img = mlx_new_image(cube->mlx, 1920, 1080);
 	if (!cube->img)
 		print_error(cube, "initialization of IMG failed ❗");
 	init_map(cube);
