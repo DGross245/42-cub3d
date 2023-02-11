@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:43:09 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/11 08:41:18 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	get_map(t_cub3d *cube, t_map *data, int *i)
 	while (cube->input[(*i)])
 		data->map[j++] = gc_strdup(cube, cube->input[(*i)++]);
 	data->map[j] = NULL;
+	cube->data.height = ft_ptrcnt(data->map);
 	pile_up(&cube->gc.dump, new_container(&cube->gc, data->map));
 	(*i)--;
 	check_map(cube);
