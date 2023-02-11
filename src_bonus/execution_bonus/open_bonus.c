@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:29:14 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:30:30 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/11 12:07:12 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	door(t_cub3d *cube, t_cords *player)
 	if (cube->door == 2)
 	{
 		cube->door = 0;
-		tmp_x = ((player->xppos) + player->xpdir * 0.08);
-		tmp_y = ((player->yppos) + player->ypdir * 0.08);
-		if (cube->data.map[(int)tmp_x - 1][(int)tmp_y] == '2')
+		tmp_x = player->xppos + cube->mov_speed * player->xpdir;
+		tmp_y = player->yppos + cube->mov_speed * player->ypdir;
+		if (check_wall_hit(cube, tmp_x - 1, tmp_y) == '2')
 			cube->data.map[(int)tmp_x - 1][(int)tmp_y] = '3';
-		else if (cube->data.map[(int)tmp_x + 1][(int)tmp_y] == '2')
+		else if (check_wall_hit(cube, tmp_x + 1, tmp_y) == '2')
 			cube->data.map[(int)tmp_x + 1][(int)tmp_y] = '3';
-		else if (cube->data.map[(int)tmp_x - 1][(int)tmp_y] == '3')
+		else if (check_wall_hit(cube, tmp_x - 1, tmp_y) == '3')
 			cube->data.map[(int)tmp_x - 1][(int)tmp_y] = '2';
-		else if (cube->data.map[(int)tmp_x + 1][(int)tmp_y] == '3')
+		else if (check_wall_hit(cube, tmp_x + 1, tmp_y) == '3')
 			cube->data.map[(int)tmp_x + 1][(int)tmp_y] = '2';
 	}
 	else
