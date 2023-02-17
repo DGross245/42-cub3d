@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:11 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 16:15:24 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 17:14:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,15 @@ void	paint_bg(t_cub3d	*cube, int x)
 unsigned int	hex_to_uint(char *hex)
 {
 	unsigned int	result;
+	int				i;
 
-	while (*hex)
+	i = -1;
+	while (hex[++i])
 	{
-		if (*hex >= '0' && *hex <= '9')
-			result = result * 16 + (*hex - '0');
-		else if (*hex >= 'A' && *hex <= 'F')
-			result = result * 16 + (*hex - 'A' + 10);
-		hex++;
+		if (hex[i] >= '0' && hex[i] <= '9')
+			result = result * 16 + (hex[i] - '0');
+		else if (hex[i] >= 'A' && hex[i] <= 'F')
+			result = result * 16 + (hex[i] - 'A' + 10);
 	}
 	return (result);
 }

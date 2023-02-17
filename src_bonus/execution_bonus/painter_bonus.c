@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:29:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 15:10:47 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 17:34:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,20 @@ void	calc_wall(t_cub3d *cube)
 	int		end;
 
 	if (cube->ray.wall_side == 0)
+	{
 		cube->ray.wall_dist = fabs((cube->ray.map_x - cube->player.xppos \
 		+ (1 - cube->ray.stepx) / 2) / cube->ray.raydirx);
+	}	
 	else
 	{
 		cube->ray.wall_dist = fabs((cube->ray.map_y - cube->player.yppos \
 		+ (1 - cube->ray.stepy) / 2) / cube->ray.raydiry);
 	}
 	cube->ray.lheight = (int)cube->mlx->height / cube->ray.wall_dist;
-	start = (-cube->ray.lheight) / 2 + cube->mlx->height / 2;
+	start = -cube->ray.lheight / 2 + cube->mlx->height / 2;
+	end = cube->ray.lheight / 2 + cube->mlx->height / 2;
 	if (start < 0)
 		start = 0;
-	end = cube->ray.lheight / 2 + cube->mlx->height / 2;
 	if (end >= cube->mlx->height)
 		end = cube->mlx->height - 1;
 	cube->ray.start = start;
@@ -56,10 +58,10 @@ void	painter(t_cub3d *cube, mlx_texture_t *texture, int x)
 	while (++i < cube->ray.end)
 	{
 		tex_y = (int)tex_pos % texture->height;
-		tex_pos = tex_pos + texel_step;
 		ft_memcpy(&cube->img->pixels[(cube->img->width * i + x) \
 		* 4], &texture->pixels[(texture->width * tex_y + tex_x) * 4], 4);
-	}	
+		tex_pos = tex_pos + texel_step;
+	}
 }
 
 int	find_x_pos(t_cub3d *cube, mlx_texture_t	*texture)
@@ -95,14 +97,15 @@ void	paint_bg(t_cub3d	*cube, int x)
 unsigned int	hex_to_uint(char *hex)
 {
 	unsigned int	result;
+	int				i;
 
-	while (*hex)
+	i = -1;
+	while (hex[++i])
 	{
-		if (*hex >= '0' && *hex <= '9')
-			result = result * 16 + (*hex - '0');
-		else if (*hex >= 'A' && *hex <= 'F')
-			result = result * 16 + (*hex - 'A' + 10);
-		hex++;
+		if (hex[i] >= '0' && hex[i] <= '9')
+			result = result * 16 + (hex[i] - '0');
+		else if (hex[i] >= 'A' && hex[i] <= 'F')
+			result = result * 16 + (hex[i] - 'A' + 10);
 	}
 	return (result);
 }

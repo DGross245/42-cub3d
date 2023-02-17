@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 16:18:42 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 17:11:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d.h"
 
 #include <math.h> // sqrt pow
+#include <stdio.h>
 
 void	calc_player_dir(t_cords *player)
 {
@@ -97,18 +98,19 @@ mlx_texture_t	*get_wall_tex(t_cub3d *cube)
 {
 	mlx_texture_t	*wall_tex;
 
-	if (cube->ray.wall_side == 1)
-	{
-		if (cube->ray.stepy < 0)
-			wall_tex = cube->tex.north;
-		else if (cube->ray.stepy > 0)
-			wall_tex = cube->tex.south;
-	}
+	wall_tex = NULL;
 	if (cube->ray.wall_side == 0)
 	{
 		if (cube->ray.stepx > 0)
-			wall_tex = cube->tex.west;
+			wall_tex = cube->tex.south;
 		else if (cube->ray.stepx < 0)
+			wall_tex = cube->tex.north;
+	}
+	else if (cube->ray.wall_side == 1)
+	{
+		if (cube->ray.stepy < 0)
+			wall_tex = cube->tex.west;
+		else if (cube->ray.stepy > 0)
 			wall_tex = cube->tex.east;
 	}
 	return (wall_tex);
