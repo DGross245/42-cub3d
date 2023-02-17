@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/17 16:02:18 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/17 17:04:23 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC				= main.c\
 				  calculator.c\
 				  events.c\
 				  painter.c\
-				  algorythem.c\
+				  search_wall.c\
 				  go.c\
 				  turn.c
 

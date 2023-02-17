@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:30:46 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/11 12:12:12 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 17:20:04 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ void	check_input(t_cub3d *cube)
 
 int	is_start_position(t_cub3d	*cube, int x, int y)
 {
-	char	txp;
+	char	typ;
 
-	txp = cube->data.map[x][y];
-	if (txp == 'N' || txp == 'S' || txp == 'W' || txp == 'E')
+	typ = cube->data.map[x][y];
+	if (typ == 'N' || typ == 'S' || typ == 'W' || typ == 'E')
 	{
 		if (cube->player.facing != '\0')
 			print_error(cube, "to manx start positions ❗");
-		cube->player.facing = txp;
-		cube->player.xppos = x + 0.5;
-		cube->player.yppos = y + 0.5;
+		cube->player.facing = typ;
+		cube->player.xppos = x;
+		cube->player.yppos = y;
 		cube->data.map[x][y] = '0';
 		calc_player_dir(&cube->player);
 		return (1);
 	}
-	if (txp == '0')
+	if (typ == '0')
 		return (1);
 	return (0);
 }

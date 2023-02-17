@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:27:12 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 14:34:51 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 17:33:32 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 #include "cub3d_bonus.h"
 
 #include <math.h> // sqrt pow
+#include <stdio.h>
 
 void	calc_player_dir(t_cords *player)
 {
 	if (player->facing == 'N')
 	{
 		player->xpdir = -1;
-		player->plane_y = 1;
+		player->plane_y = 0.80;
 	}
 	else if (player->facing == 'E')
 	{
 		player->ypdir = 1;
-		player->plane_x = 1;
+		player->plane_x = 0.80;
 	}
 	else if (player->facing == 'S')
 	{
 		player->xpdir = 1;
-		player->plane_y = -1;
+		player->plane_y = -0.80;
 	}
 	else if (player->facing == 'W')
 	{
 		player->ypdir = -1;
-		player->plane_x = -1;
+		player->plane_x = -0.80;
 	}
 }
 
@@ -97,18 +98,19 @@ mlx_texture_t	*get_wall_tex(t_cub3d *cube)
 {
 	mlx_texture_t	*wall_tex;
 
-	if (cube->ray.wall_side == 1)
-	{
-		if (cube->ray.stepy < 0)
-			wall_tex = cube->tex.north;
-		else if (cube->ray.stepy > 0)
-			wall_tex = cube->tex.south;
-	}
+	wall_tex = NULL;
 	if (cube->ray.wall_side == 0)
 	{
 		if (cube->ray.stepx > 0)
-			wall_tex = cube->tex.west;
+			wall_tex = cube->tex.south;
 		else if (cube->ray.stepx < 0)
+			wall_tex = cube->tex.north;
+	}
+	else if (cube->ray.wall_side == 1)
+	{
+		if (cube->ray.stepy < 0)
+			wall_tex = cube->tex.west;
+		else if (cube->ray.stepy > 0)
 			wall_tex = cube->tex.east;
 	}
 	return (is_door(cube, wall_tex));
