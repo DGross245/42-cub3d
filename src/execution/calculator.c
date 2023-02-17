@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 10:05:25 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/17 11:00:47 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ void	calculator(t_cub3d *cube, t_cords *player)
 	x = -1;
 	while (++x < cube->mlx->width)
 	{
+		paint_bg(cube, x);
 		set_ray(cube, &cube->ray, player, x);
 		calc_dir(&cube->ray, player);
 		search_wall(cube);
 		tex = get_wall_tex(cube);
 		calc_wall(cube);
 		painter(cube, tex, x);
-		paint_bg(cube, x);
 	}
 	mlx_image_to_window(cube->mlx, cube->img, 0, 0);
 }
