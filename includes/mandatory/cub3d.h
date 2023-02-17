@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:49:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 08:08:17 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/17 16:01:12 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ typedef struct s_map
 	int				height;
 	int				width;
 }t_map;
+
+typedef struct s_cache
+{
+	int		tex_x;
+	double	tex_pos;
+	int		start;
+	int		end; 
+}t_cache;
 
 typedef struct s_cords
 {
@@ -99,6 +107,7 @@ void	init_player(t_cub3d *cube);
 void	events(void *param);
 void	nuke_trash(t_cub3d	*cube);
 char	*gc_strdup(t_cub3d *cube, const char *s1);
+void	draw_colum(t_cub3d *cube, mlx_texture_t *texture, int x);
 
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
 //:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
