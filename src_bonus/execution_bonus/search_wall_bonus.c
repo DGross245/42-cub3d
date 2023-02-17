@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_bonus.c                                        :+:      :+:    :+:   */
+/*   search_wall_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:27:34 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:30:39 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 10:04:12 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	dda(t_cub3d *cube)
+void	search_wall(t_cub3d *cube)
 {
 	while (cube->ray.wall_hit == 0)
 	{

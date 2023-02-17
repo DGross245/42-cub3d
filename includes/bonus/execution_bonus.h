@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:11:00 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:51:21 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 10:06:52 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 void			calculator(t_cub3d *cube, t_cords *player);
 void			paint_bg(t_cub3d	*cube, int x);
 int				find_wall(t_cub3d *cube, mlx_texture_t *texture);
-void			dda(t_cub3d *cube);
-void			calc_rest(t_cub3d *cube);
+void			search_wall(t_cub3d *cube);
+void			calc_wall(t_cub3d *cube);
 void			init_textures(t_cub3d *cube);
 mlx_texture_t	*get_wall_tex(t_cub3d *cube);
 void			calc_player_dir(t_cords *player);
