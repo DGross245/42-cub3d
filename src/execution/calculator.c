@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:39:23 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 07:47:57 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ void	calc_player_dir(t_cords *player)
 	if (player->facing == 'N')
 	{
 		player->xpdir = -1;
-		player->plane_y = 1;
+		player->plane_y = 0.80;
 	}
 	else if (player->facing == 'E')
 	{
 		player->ypdir = 1;
-		player->plane_x = 1;
+		player->plane_x = 0.80;
 	}
 	else if (player->facing == 'S')
 	{
 		player->xpdir = 1;
-		player->plane_y = -1;
+		player->plane_y = -0.80;
 	}
 	else if (player->facing == 'W')
 	{
 		player->ypdir = -1;
-		player->plane_x = -1;
+		player->plane_x = -0.80;
 	}
 }
 
