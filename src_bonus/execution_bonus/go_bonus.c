@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   go_bonus.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:28:36 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 09:56:49 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/17 12:44:16 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d_bonus.h"
-
-#include <stdio.h>
 
 char	check_wall_hit(t_cub3d *cube, double tmp_x, double tmp_y)
 {
@@ -43,7 +41,6 @@ void	go_up(t_cords *player, t_cub3d *cube)
 
 	tmp_x = player->xppos + cube->mov_speed * player->xpdir;
 	tmp_y = player->yppos + cube->mov_speed * player->ypdir;
-	printf("%c\n", check_wall_hit(cube, tmp_x, tmp_y));
 	if (check_wall_hit(cube, tmp_x, tmp_y) == '0'
 		|| check_wall_hit(cube, tmp_x, tmp_y) == '3')
 	{
