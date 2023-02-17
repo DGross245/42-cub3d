@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/17 12:41:47 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/17 16:02:18 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC				= main.c\
 				  calculator.c\
 				  events.c\
 				  painter.c\
-				  search_wall.c\
+				  algorythem.c\
 				  go.c\
 				  turn.c
 
@@ -81,9 +81,9 @@ DEPS_BONUS		= $(addprefix $(OBJ_DIR_BONUS),$(SRC_BONUS:.c=.d))
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -g
 
-INCLUDES_BONUS  = -I./includes/bonus -I./libft/includes -I./MLX42/include/MLX42 -Wno-gnu-include-next -ILeakSanitizer/include
-INCLUDES		= -I./includes/mandatory -I./libft/includes -I./MLX42/include/MLX42 -Wno-gnu-include-next -ILeakSanitizer/include
-LDINCLUDES		= -L./libft -lft -L./LeakSanitizer -llsan -lc++
+INCLUDES_BONUS  = -I./includes/bonus -I./libft/includes -I./MLX42/include/MLX42 #-Wno-gnu-include-next -ILeakSanitizer/include
+INCLUDES		= -I./includes/mandatory -I./libft/includes -I./MLX42/include/MLX42 #-Wno-gnu-include-next -ILeakSanitizer/include
+LDINCLUDES		= -L./libft -lft #-L./LeakSanitizer -llsan -lc++
 
 GOINFRE_DIR 	= /Users/$(USER)/goinfre/.brew/opt/glfw/lib
 BREW_DIR 		= /Users/$(USER)/.brew/opt/glfw/lib

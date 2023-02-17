@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 11:00:47 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 16:18:42 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	calc_player_dir(t_cords *player)
 
 static void	set_ray(t_cub3d *cube, t_ray	*ray, t_cords *player, int x)
 {
-	ray->plane_cam = 2 * x / (double)cube->mlx->width - 1;
-	ray->raydirx = player->xpdir + player->plane_x * ray->plane_cam;
-	ray->raydiry = player->ypdir + player->plane_y * ray->plane_cam;
 	ray->map_x = (int)player->xppos;
 	ray->map_y = (int)player->yppos;
+	ray->plane_cam = 2 * x / (double)cube->mlx->width - 1;
+	ray->raydirx = player->xpdir + ray->plane_cam * player->plane_x;
+	ray->raydiry = player->ypdir + ray->plane_cam * player->plane_y;
 	ray->deltadisx = fabs(1 / ray->raydirx);
 	ray->deltadisy = fabs(1 / ray->raydiry);
-	ray->wall_hit = 0;
+	calc_dir(ray, player);
 }
 
 void	calc_dir(t_ray	*ray, t_cords *player)
@@ -56,7 +56,7 @@ void	calc_dir(t_ray	*ray, t_cords *player)
 	if (ray->raydirx > 0)
 	{
 		ray->stepx = 1;
-		ray->sidedis_x = (ray->map_x + 1.0 - player->xppos) * ray->deltadisx;
+		ray->sidedis_x = (ray->map_x + 1 - player->xppos) * ray->deltadisx;
 	}
 	else
 	{
@@ -66,7 +66,7 @@ void	calc_dir(t_ray	*ray, t_cords *player)
 	if (ray->raydiry > 0)
 	{
 		ray->stepy = 1;
-		ray->sidedis_y = (ray->map_y + 1.0 - player->yppos) * ray->deltadisy;
+		ray->sidedis_y = (ray->map_y + 1 - player->yppos) * ray->deltadisy;
 	}
 	else
 	{
@@ -85,7 +85,6 @@ void	calculator(t_cub3d *cube, t_cords *player)
 	{
 		paint_bg(cube, x);
 		set_ray(cube, &cube->ray, player, x);
-		calc_dir(&cube->ray, player);
 		search_wall(cube);
 		tex = get_wall_tex(cube);
 		calc_wall(cube);

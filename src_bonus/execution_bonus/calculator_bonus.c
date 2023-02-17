@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:27:12 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 11:01:29 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 14:34:51 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	calc_player_dir(t_cords *player)
 
 static void	set_ray(t_cub3d *cube, t_ray	*ray, t_cords *player, int x)
 {
+	ray->map_x = (int)player->xppos;
+	ray->map_y = (int)player->yppos;
 	ray->plane_cam = 2 * x / (double)cube->mlx->width - 1;
 	ray->raydirx = player->xpdir + player->plane_x * ray->plane_cam;
 	ray->raydiry = player->ypdir + player->plane_y * ray->plane_cam;
-	ray->map_x = (int)player->xppos;
-	ray->map_y = (int)player->yppos;
 	ray->deltadisx = fabs(1 / ray->raydirx);
 	ray->deltadisy = fabs(1 / ray->raydiry);
-	ray->wall_hit = 0;
+	calc_dir(ray, player);
 }
 
 void	calc_dir(t_ray	*ray, t_cords *player)
@@ -85,7 +85,6 @@ void	calculator(t_cub3d *cube, t_cords *player)
 	{
 		paint_bg(cube, x);
 		set_ray(cube, &cube->ray, player, x);
-		calc_dir(&cube->ray, player);
 		search_wall(cube);
 		tex = get_wall_tex(cube);
 		calc_wall(cube);
