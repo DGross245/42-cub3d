@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/10 13:57:06 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/17 10:07:34 by dna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC				= main.c\
 				  calculator.c\
 				  events.c\
 				  painter.c\
-				  dda.c\
+				  search_wall.c\
 				  go.c\
 				  turn.c
 
@@ -66,7 +66,7 @@ SRC_BONUS		= main_bonus.c\
 				  calculator_bonus.c\
 				  events_bonus.c\
 				  painter_bonus.c\
-				  dda_bonus.c\
+				  search_wall_bonus.c\
 				  go_bonus.c\
 				  turn_bonus.c\
 				  open_bonus.c

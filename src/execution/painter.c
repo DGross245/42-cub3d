@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   painter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:11 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:00:27 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/17 10:01:32 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include <math.h> // fabs floor
 
-void	calc_rest(t_cub3d *cube)
+void	calc_wall(t_cub3d *cube)
 {
 	int		start;
 	int		end;

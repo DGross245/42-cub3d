@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 07:47:57 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/17 10:05:25 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	calc_player_dir(t_cords *player)
 
 static void	set_ray(t_cub3d *cube, t_ray	*ray, t_cords *player, int x)
 {
-	ray->camx = 2 * x / (double)cube->mlx->width - 1;
-	ray->raydirx = player->xpdir + player->plane_x * ray->camx;
-	ray->raydiry = player->ypdir + player->plane_y * ray->camx;
+	ray->plane_cam = 2 * x / (double)cube->mlx->width - 1;
+	ray->raydirx = player->xpdir + player->plane_x * ray->plane_cam;
+	ray->raydiry = player->ypdir + player->plane_y * ray->plane_cam;
 	ray->map_x = (int)player->xppos;
 	ray->map_y = (int)player->yppos;
-	ray->deltadisx = sqrt(1 + pow(ray->raydiry, 2) / pow(ray->raydirx, 2));
-	ray->deltadisy = sqrt(1 + pow(ray->raydirx, 2) / pow(ray->raydiry, 2));
+	ray->deltadisx = fabs(1 / ray->raydirx);
+	ray->deltadisy = fabs(1 / ray->raydiry);
 	ray->wall_hit = 0;
 }
 
@@ -85,9 +85,9 @@ void	calculator(t_cub3d *cube, t_cords *player)
 	{
 		set_ray(cube, &cube->ray, player, x);
 		calc_dir(&cube->ray, player);
-		dda(cube);
+		search_wall(cube);
 		tex = get_wall_tex(cube);
-		calc_rest(cube);
+		calc_wall(cube);
 		painter(cube, tex, x);
 		paint_bg(cube, x);
 	}
