@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculator_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:27:12 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 17:33:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 09:37:12 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	set_ray(t_cub3d *cube, t_ray	*ray, t_cords *player, int x)
 	ray->map_x = (int)player->xppos;
 	ray->map_y = (int)player->yppos;
 	ray->plane_cam = 2 * x / (double)cube->mlx->width - 1;
-	ray->raydirx = player->xpdir + player->plane_x * ray->plane_cam;
-	ray->raydiry = player->ypdir + player->plane_y * ray->plane_cam;
+	ray->raydirx = player->xpdir + ray->plane_cam * player->plane_x;
+	ray->raydiry = player->ypdir + ray->plane_cam * player->plane_y;
 	ray->deltadisx = fabs(1 / ray->raydirx);
 	ray->deltadisy = fabs(1 / ray->raydiry);
 	calc_dir(ray, player);
@@ -57,7 +57,7 @@ void	calc_dir(t_ray	*ray, t_cords *player)
 	if (ray->raydirx > 0)
 	{
 		ray->stepx = 1;
-		ray->sidedis_x = (ray->map_x + 1.0 - player->xppos) * ray->deltadisx;
+		ray->sidedis_x = (ray->map_x + 1 - player->xppos) * ray->deltadisx;
 	}
 	else
 	{
@@ -67,7 +67,7 @@ void	calc_dir(t_ray	*ray, t_cords *player)
 	if (ray->raydiry > 0)
 	{
 		ray->stepy = 1;
-		ray->sidedis_y = (ray->map_y + 1.0 - player->yppos) * ray->deltadisy;
+		ray->sidedis_y = (ray->map_y + 1 - player->yppos) * ray->deltadisy;
 	}
 	else
 	{
