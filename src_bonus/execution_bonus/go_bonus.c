@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:28:36 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 12:44:16 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 16:18:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	check_wall_hit(t_cub3d *cube, double tmp_x, double tmp_y)
 {
 	if (cube->data.map[(int)(tmp_x + 0.2)][(int)(tmp_y)] == '3' ||
 		cube->data.map[(int)(tmp_x - 0.2)][(int)(tmp_y)] == '3' ||
-		cube->data.map[(int)(tmp_x - 0.2)][(int)(tmp_y)] == '3' ||
-		cube->data.map[(int)(tmp_x + 0.2)][(int)(tmp_y)] == '3')
+		cube->data.map[(int)(tmp_x)][(int)(tmp_y - 0.2)] == '3' ||
+		cube->data.map[(int)(tmp_x)][(int)(tmp_y + 0.2)] == '3')
 		return ('3');
 	else if (cube->data.map[(int)(tmp_x + 0.2)][(int)(tmp_y + 0.2)] == '0' &&
 		cube->data.map[(int)(tmp_x - 0.2)][(int)(tmp_y - 0.2)] == '0' &&

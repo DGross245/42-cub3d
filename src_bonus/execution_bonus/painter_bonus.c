@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:29:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/19 13:11:33 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 14:42:04 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,9 @@ void	calc_wall(t_cub3d *cube)
 	int		end;
 
 	if (cube->ray.wall_side == 0)
-	{
-		cube->ray.wall_dist = fabs((cube->ray.map_x - cube->player.xppos \
-		+ (1 - cube->ray.stepx) / 2) / cube->ray.raydirx);
-	}	
+		cube->ray.wall_dist = fabs(cube->ray.sidedis_x - cube->ray.deltadisx);
 	else
-	{
-		cube->ray.wall_dist = fabs((cube->ray.map_y - cube->player.yppos \
-		+ (1 - cube->ray.stepy) / 2) / cube->ray.raydiry);
-	}
+		cube->ray.wall_dist = fabs(cube->ray.sidedis_y - cube->ray.deltadisy);
 	cube->ray.lheight = (int)cube->mlx->height / cube->ray.wall_dist;
 	start = -cube->ray.lheight / 2 + cube->mlx->height / 2;
 	end = cube->ray.lheight / 2 + cube->mlx->height / 2;

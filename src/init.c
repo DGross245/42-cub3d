@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 11:41:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:41:50 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 16:24:30 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,12 @@ void	init_cub3d(t_cub3d *cube)
 
 void	init_textures(t_cub3d *cube)
 {
+	check_png(cube);
 	cube->tex.north = mlx_load_png(cube->data.north);
 	cube->tex.west = mlx_load_png(cube->data.west);
 	cube->tex.south = mlx_load_png(cube->data.south);
 	cube->tex.east = mlx_load_png(cube->data.east);
 	if (cube->tex.north == NULL || cube->tex.south == NULL
 		||cube->tex.west == NULL || cube->tex.east == NULL)
-		print_error(cube, "MLX PNG ERROR\n");
+		print_error(cube, "MLX PNG ERROR ❗");
 }

@@ -6,14 +6,14 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 10:02:16 by dna               #+#    #+#             */
-/*   Updated: 2023/02/10 13:40:25 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:52:17 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d.h"
 
-#include <math.h> // con sin atan2
+#include <math.h> // con sin
 
 void	turn(t_cords *player, double angle)
 {
