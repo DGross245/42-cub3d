@@ -6,13 +6,14 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:30:56 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:34:38 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:23:50 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "parser_bonus.h"
 #include "execution_bonus.h"
+#include "MLX42.h"
 
 int	main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:28:12 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:29:20 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 12:49:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	events(void *param)
 	mlx_set_cursor_mode(cube->mlx, MLX_MOUSE_HIDDEN);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cube->mlx);
+	mouse_position(cube, &cube->player);
 	go(cube);
 	if (mlx_is_key_down(cube->mlx, MLX_KEY_E))
 		door(cube, &cube->player);
-	mouse_position(cube, &cube->player);
 	redraw(cube);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 19:32:06 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 17:11:56 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:31:34 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cub3d.h"
 
 #include <math.h> // sqrt pow
-#include <stdio.h>
+#include <stdlib.h> // NULL
 
 void	calc_player_dir(t_cords *player)
 {
@@ -42,11 +42,13 @@ void	calc_player_dir(t_cords *player)
 
 static void	set_ray(t_cub3d *cube, t_ray	*ray, t_cords *player, int x)
 {
+	double	cam;
+
 	ray->map_x = (int)player->xppos;
 	ray->map_y = (int)player->yppos;
-	ray->plane_cam = 2 * x / (double)cube->mlx->width - 1;
-	ray->raydirx = player->xpdir + ray->plane_cam * player->plane_x;
-	ray->raydiry = player->ypdir + ray->plane_cam * player->plane_y;
+	cam = 2 * x / (double)cube->mlx->width - 1;
+	ray->raydirx = player->xpdir + cam * player->plane_x;
+	ray->raydiry = player->ypdir + cam * player->plane_y;
 	ray->deltadisx = fabs(1 / ray->raydirx);
 	ray->deltadisy = fabs(1 / ray->raydiry);
 	calc_dir(ray, player);
@@ -84,11 +86,11 @@ void	calculator(t_cub3d *cube, t_cords *player)
 	x = -1;
 	while (++x < cube->mlx->width)
 	{
-		paint_bg(cube, x);
 		set_ray(cube, &cube->ray, player, x);
 		search_wall(cube);
 		tex = get_wall_tex(cube);
 		calc_wall(cube);
+		paint_bg(cube, x);
 		painter(cube, tex, x);
 	}
 	mlx_image_to_window(cube->mlx, cube->img, 0, 0);
