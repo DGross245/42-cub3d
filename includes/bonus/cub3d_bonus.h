@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:10:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/19 12:41:18 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 15:30:59 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	events(void *param);
 void	nuke_trash(t_cub3d	*cube);
 char	*gc_strdup(t_cub3d *cube, const char *s1);
 char	check_wall_hit(t_cub3d *cube, double tmp_x, double tmp_y);
-
+void	check_png(t_cub3d *cube);
 //  .--.      .-'.      .--.      .--.      .--.      .--.      .`-.      .--.
 //:::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.\::::::::.
 //'      `--'      `.-'      `--'      `--'      `--'      `-.'      `--'      `

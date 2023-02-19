@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   go.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 09:44:34 by dna               #+#    #+#             */
-/*   Updated: 2023/02/19 09:49:04 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/19 14:18:48 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d.h"
 #include "libft.h"
+#include "execution.h"
 
 static char	check_wall_hit(t_cub3d *cube, double tmp_x, double tmp_y)
 {

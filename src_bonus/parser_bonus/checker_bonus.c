@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:30:46 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 17:20:04 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/19 16:25:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_start_position(t_cub3d	*cube, int x, int y)
 	if (typ == 'N' || typ == 'S' || typ == 'W' || typ == 'E')
 	{
 		if (cube->player.facing != '\0')
-			print_error(cube, "to manx start positions ❗");
+			print_error(cube, "to many start positions ❗");
 		cube->player.facing = typ;
 		cube->player.xppos = x;
 		cube->player.yppos = y;
