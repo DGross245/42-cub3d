@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/19 13:38:16 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/20 10:30:02 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ DEPS			= $(addprefix $(OBJ_DIR),$(SRC:.c=.d))
 DEPS_BONUS		= $(addprefix $(OBJ_DIR_BONUS),$(SRC_BONUS:.c=.d))
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g
 
 INCLUDES_BONUS  = -I./includes/bonus -I./libft/includes -I./MLX42/include/MLX42
 INCLUDES		= -I./includes/mandatory -I./libft/includes -I./MLX42/include/MLX42
