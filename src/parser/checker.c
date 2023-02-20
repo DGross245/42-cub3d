@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/17 17:04:01 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/20 10:16:46 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	is_start_position(t_cub3d	*cube, int x, int y)
 		if (cube->player.facing != '\0')
 			print_error(cube, "to many start positions ❗");
 		cube->player.facing = typ;
-		cube->player.xppos = x;
-		cube->player.yppos = y;
+		cube->player.xppos = x + 0.5;
+		cube->player.yppos = y + 0.5;
 		cube->data.map[x][y] = '0';
 		calc_player_dir(&cube->player);
 		return (1);
@@ -100,12 +100,11 @@ void	check_map(t_cub3d *cube)
 				;
 			else if (x == 0 && cube->data.map[x][y] != '1')
 				print_error(cube, "invalid map ❗");
-			else if (x == cube->data.height && cube->data.map[x][y] != '1')
+			else if (x == cube->data.height - 1 && cube->data.map[x][y] != '1')
 				print_error(cube, "invalid map ❗");
 			else if (is_start_position(cube, x, y) && cube->data.map[x + 1])
 				check_surrounding(cube, x, y);
-			else if (cube->data.map[x][y] != '0' && cube->data.map[x][y] != '1'
-				&& cube->data.map[x][y] != '2')
+			else if (cube->data.map[x][y] != '0' && cube->data.map[x][y] != '1')
 				print_error(cube, "invalid map ❗");
 		}
 	}
