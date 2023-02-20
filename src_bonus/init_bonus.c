@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:30:54 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/19 16:23:45 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/20 16:44:41 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	init_cub3d(t_cub3d *cube)
 
 void	init_textures(t_cub3d *cube)
 {
+	if (cube->data.map == NULL)
+		print_error(cube, "missing map");
 	check_png(cube);
 	cube->tex.north = mlx_load_png(cube->data.north);
 	cube->tex.west = mlx_load_png(cube->data.west);
