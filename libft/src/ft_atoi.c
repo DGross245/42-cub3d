@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:16:20 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 20:57:40 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/22 21:50:12 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	isnumber(const char *str, int i, int sign, long int result1)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (result1 * sign > 2147483647)
-			return (0);
+			return (-1);
 		if (result1 * sign < -2147483648)
-			return (0);
+			return (-1);
 		result1 = 10 * result1 + (str[i] - '0');
 		i++;
 	}
@@ -48,7 +48,7 @@ int	ft_atoi(const char	*str)
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
-			sign = sign * -1;
+			return (-1);
 		i++;
 	}
 	result = isnumber(str, i, sign, result) * sign;
