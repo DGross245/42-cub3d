@@ -6,13 +6,16 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:48:36 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/19 16:20:02 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/23 12:44:05 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
 #include "execution.h"
+#include "libft.h"
+
+#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {

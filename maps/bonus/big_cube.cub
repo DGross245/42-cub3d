@@ -1,9 +1,0 @@
-EA ./textures/east.png
-NO ./textures/north.png
-SO ./textures/south.png
-WE ./textures/west.png
-D ./textures/door.png
-
-C 255,255,255
-F 255,255,0
-
