@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:53:11 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/19 16:20:37 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/23 12:32:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,4 @@ void	check_png(t_cub3d *cube)
 		(ft_strlen(cube->data.east) - 4), ".png", 4) != 0)
 		print_error(cube, "texture must be png ❗");
 }
+

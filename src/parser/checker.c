@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:29:30 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/20 16:44:17 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/23 12:33:41 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_input(t_cub3d *cube)
 			j++;
 		if (cube->input[i][j] != '\0' && !ft_isdigit(cube->input[i][j]))
 		{
-			check = ft_split(cube->input[i], ' ');
+			check = ft_split_2(cube->input[i], " ,");
 			get_path(cube, check);
 			free_double((void **)check);
 		}

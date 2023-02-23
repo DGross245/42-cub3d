@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 12:48:05 by dgross            #+#    #+#              #
-#    Updated: 2023/02/20 10:30:02 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/23 12:46:06 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,7 @@ VPATH			= src:\
 				  src/execution:\
 				  src_bonus/execution_bonus:\
 				  includes/mandatory:\
-				  includes/bonus:\
-				  
+				  includes/bonus:
 
 HEADERS			= cub3d.h\
 				  execution.h\
@@ -52,7 +51,8 @@ SRC				= main.c\
 				  painter.c\
 				  search_wall.c\
 				  go.c\
-				  turn.c
+				  turn.c\
+				  split.c
 
 SRC_BONUS		= main_bonus.c\
 				  parser_bonus.c\
@@ -69,7 +69,8 @@ SRC_BONUS		= main_bonus.c\
 				  search_wall_bonus.c\
 				  go_bonus.c\
 				  turn_bonus.c\
-				  open_bonus.c
+				  open_bonus.c\
+				  split_bonus.c
 		  
 OBJ_DIR			= ./obj/
 OBJ_DIR_BONUS	= ./obj_bonus/

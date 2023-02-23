@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:30:48 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/10 13:32:31 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/23 12:53:43 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <fcntl.h> // open
 #include <stddef.h> // NULL
 
-static void	check_colour_range(t_cub3d *cube, char **colour, char **str)
+static void	check_colour_range(t_cub3d *cube, char **colour)
 {
 	int	i;
 	int	nbr;
@@ -28,22 +28,21 @@ static void	check_colour_range(t_cub3d *cube, char **colour, char **str)
 		if (nbr < 0 || nbr > 255)
 		{
 			free_double((void **)colour);
-			free_double((void **)str);
 			print_error(cube, "wrong colour range");
 		}
 	}
 }
 
-static void	set_colour(t_cub3d *cube, char **colour, char **str)
+static void	set_colour(t_cub3d *cube, char **colour)
 {
 	int	r;
 	int	g;
 	int	b;
 
-	r = ft_atoi(colour[0]);
-	g = ft_atoi(colour[1]);
-	b = ft_atoi(colour[2]);
-	if (!ft_strcmp(str[0], "F"))
+	r = ft_atoi(colour[1]);
+	g = ft_atoi(colour[2]);
+	b = ft_atoi(colour[3]);
+	if (!ft_strcmp(colour[0], "F"))
 	{
 		cube->data.floor = rgba_to_uint(r, g, b, 255);
 		cube->f_set = 1;
@@ -57,23 +56,18 @@ static void	set_colour(t_cub3d *cube, char **colour, char **str)
 
 void	get_colour(t_cub3d *cube, char **str)
 {
-	char	**colour;
-
 	if (str[1] == NULL)
 	{
 		free_double((void **)str);
 		print_error(cube, "colours not set ❗");
 	}
-	colour = ft_split(str[1], ',');
-	if (ft_ptrcnt(colour) != 3)
+	if (ft_ptrcnt(str) != 4)
 	{
-		free_double((void **)colour);
 		free_double((void **)str);
 		print_error(cube, "wrong colour ❗");
 	}
-	check_colour_range(cube, colour, str);
-	set_colour(cube, colour, str);
-	free_double((void **)colour);
+	check_colour_range(cube, str);
+	set_colour(cube, str);
 }
 
 void	get_path(t_cub3d *cube, char **str)
