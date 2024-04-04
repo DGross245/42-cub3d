@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:06:55 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/23 12:40:48 by dgross           ###   ########.fr       */
+/*   Updated: 2024/04/04 11:13:23 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ static void	check_colour_range(t_cub3d *cube, char **colour)
 {
 	int	i;
 	int	nbr;
-	int	j;
 
-	j = -1;
 	i = -1;
 	while (colour[++i])
 	{
