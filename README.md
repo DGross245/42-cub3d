@@ -66,7 +66,7 @@ In addition to the mandatory functionality, the bonus part cub3D_bonus introduce
 
 In the map syntax, the `2` represents a door. Doors can be opened by pressing the `E` key, allowing players to walk through them.
 
-Therefor use the maps in the `maps/bonus` directory, they include doors.
+Therefore use the maps in the `maps/bonus` directory, they include doors.
 
 ```bash
 ./cub3D_bonus maps/bonus/[map]
