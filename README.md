@@ -2,7 +2,7 @@
 
 ![cube](img/cube.png)
 
-Cub3D is a project developed as part of the curriculum at 42 school. It's a RayCaster implemented using [MLX42](https://github.com/codam-coding-college/MLX42#download-and-build---mlx42).
+Cub3D is a project developed as part of the curriculum at 42. It's a RayCaster implemented using [MLX42](https://github.com/codam-coding-college/MLX42#download-and-build---mlx42).
 
 ## Mandatory Part
 
